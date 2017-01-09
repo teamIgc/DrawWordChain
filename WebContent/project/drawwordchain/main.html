@@ -47,6 +47,14 @@
 
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/draw.js"></script>
+    <script type="text/javascript">
+        document.getElementById('toJSON').addEventListener("click", function() {
+            var data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            console.log(data);
+            console.log(JSON.stringify(data));
+            alert(JSON.stringify(data))
+        }, false);
+    </script>
 </body>
 
 </html>
