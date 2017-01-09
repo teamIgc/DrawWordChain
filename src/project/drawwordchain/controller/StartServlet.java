@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import project.drawwordchain.model.Drawing;
+import project.drawwordchain.model.FirstChar;
 import project.drawwordchain.model.User;
 
 @WebServlet("/project/drawwordchain/start")
@@ -23,7 +24,7 @@ public class StartServlet extends ActionServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // 最初の文字を決めるメソッド
-		Character character = new Character();
+		FirstChar firstChar = new FirstChar();
 
         // アプリケーションスコープの作成
         ServletContext application = this.getServletContext();
