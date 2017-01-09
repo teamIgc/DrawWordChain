@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <title>絵しりとり</title>
     <link href="css/reset.css" rel="stylesheet" type="text/css">
-    <link href="css/basic.css" rel="stylesheet" type="text/css">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <h1>お絵かきしりとり</h1>
-
+    <hr>
     <!-- <canvas width="640" height="480" style="border: 1px solid black;"></canvas> -->
     <canvas id="myCanvas" width="700" height="400" style="border: 1px solid black;"></canvas>
     <div id="canvasmenu">
@@ -32,7 +32,20 @@
         <div class="menuicon" id="alpha1" style="background-color:rgba(255,72,1, 0.1)">1</div>
     </div>
 
-    <div>
+    <div id="player_area">
+        <dl>
+            <dt>p1</dt>
+            <dd>test</dd>
+            <dt>p2</dt>
+            <dd></dd>
+        </dl>
+    </div>
+
+    <div id="send_button_area">
+        <button id="send_button">開始</button>
+    </div>
+
+    <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/draw.js"></script>
 </body>
 
