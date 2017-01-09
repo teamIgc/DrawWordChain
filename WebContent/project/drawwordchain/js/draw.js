@@ -1,6 +1,6 @@
 (function() {
     //HTML上の canvas タグを取得
-    var canvas = document.getElementById('myCanvas');
+    canvas = document.getElementById('myCanvas');
 
     //レスポンシブ対応 画面サイズでキャンバスサイズを調整します
     if (screen.width < 860) {
@@ -9,7 +9,7 @@
     }
 
     //キャンバスの背景カラーを決定。 fillRectは長方形に塗るメソッド
-    var ctx = canvas.getContext('2d');
+    ctx = canvas.getContext('2d');
     ctx.beginPath();
     ctx.fillStyle = "#f5f5f5";
     ctx.fillRect(0, 0, 700, 400);
