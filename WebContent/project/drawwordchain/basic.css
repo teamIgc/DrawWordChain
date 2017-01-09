@@ -1,0 +1,23 @@
+h1 {
+    font-size: 2em;
+}
+
+canvas {
+    background-color: white;
+    margin: 0px 40px;
+    width: 700px;
+    height: 400px;
+}
+
+.menuicon {
+  float: left;
+  text-align: center;
+	background: #EEE;
+	border: 1px solid #DDD;
+	color: #111;
+	width: 30px;
+  height: 30px;
+  border-radius:50px;
+  /*vertical-align: middle;*/
+  /*display: table-cell;*/
+}
