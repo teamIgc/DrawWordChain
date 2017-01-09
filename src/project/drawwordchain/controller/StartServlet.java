@@ -1,6 +1,9 @@
-package project.simplechat.controller;
+package project.drawwordchain.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -9,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import project.simplechat.model.Chat;
-import project.simplechat.model.User;
+import project.drawwordchain.model.Drawing;
+import project.drawwordchain.model.User;
 
-@WebServlet("/project/simplechat/start")
+@WebServlet("/project/drawwordchain/start")
 public class StartServlet extends ActionServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -20,7 +23,7 @@ public class StartServlet extends ActionServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // 最初の文字を決めるメソッド
-		FirstChar firstChar = new FirstChar();
+		Character character = new Character();
 
         // アプリケーションスコープの作成
         ServletContext application = this.getServletContext();
@@ -36,7 +39,7 @@ public class StartServlet extends ActionServlet {
         builder.append('{');
 
         // userListのjson作成
-        builder.append('\"playerList\":[')
+        builder.append("\"playerList\":[");
 
         // Userクラスに入っているuserをJsonに書き込む
         List<User> userList = drawing.getUserList();
@@ -46,7 +49,7 @@ public class StartServlet extends ActionServlet {
 
             // 最後のみ”,”を省く
             User lastUser = userList.get(userList.size() - 1);
-            if(user.equals(lastUser) {
+            if(user.equals(lastUser)) {
 
             } else {
                 builder.append(',');
