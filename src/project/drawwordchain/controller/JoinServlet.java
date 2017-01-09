@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import project.drawwordchain.model.Drawing;
+import project.drawwordchain.model.Character;
 import project.drawwordchain.model.User;
 
 @WebServlet("/project/drawwordchain/join")

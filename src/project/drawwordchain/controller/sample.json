@@ -1,0 +1,17 @@
+/*simplechatのリターン内容*/
+{
+    "user": {
+        "name": "aa"
+    },
+    "statementList": [{
+        "user": {
+            "name": "test"
+        },
+        "message": "aa"
+    }, {
+        "user": {
+            "name": "aa"
+        },
+        "message": "fuck"
+    }]
+}
