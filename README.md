@@ -12,13 +12,13 @@
 - ~~JsonデータのCanvas化~~
 
 # 流れ
-ActionServlet.java
+~~ActionServlet.java
 ->
 名前入力して開始
 ->
 JoinServlet.java
 ->
-main.htmlに移行
+main.htmlに移行~~
 ->
 開始ボタン
 ->
