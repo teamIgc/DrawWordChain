@@ -61,9 +61,37 @@ function checkUpdateRequest() {
 	}
 }
 
+function checkStartRequest() {
+	// 開始ボタンのレスポンス処理部分
+	if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
+		receiveStartResponse();
+	}
+}
+
+function receiveStartResponse() {
+	var response = JSON.parse(xmlHttpRequest.responseText);
+
+	var playerAreaElement = document.getElementById("player_area");
+
+	for(var i = 0; i < response.playerList.length; i++) {
+		var playerElement = document.createElement("span");
+		playerAreaElement.appendChild(playerElement);
+		playerElement.innerHTML = "player"+(i+1)+":"+response.playerList[i];
+		playerAreaElement.appendChild(document.createElement("br"));
+	}
+}
+
 window.addEventListener("load", function() {
 	var sendButtonElement = document.getElementById("send_button");
-	sendButtonElement.addEventListener("click", sendSendRequest, false);
+
+	sendButtonElement.addEventListener("click", function() {
+		console.log("test");
+		var url = "start";
+		xmlHttpRequest = new XMLHttpRequest();
+		xmlHttpRequest.onreadystatechange = checkStartRequest;
+		xmlHttpRequest.open("GET", url, true);
+		xmlHttpRequest.send(null);
+	}, false);
 
 	// sendUpdateRequest();
 	//
