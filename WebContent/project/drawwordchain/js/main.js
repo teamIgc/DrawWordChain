@@ -73,6 +73,10 @@ function receiveStartResponse() {
 
 	var playerAreaElement = document.getElementById("player_area");
 
+	while (playerAreaElement.lastChild) {
+	  playerAreaElement.removeChild(playerAreaElement.lastChild);
+	}
+
 	for(var i = 0; i < response.playerList.length; i++) {
 		var playerElement = document.createElement("span");
 		playerAreaElement.appendChild(playerElement);
@@ -85,7 +89,6 @@ window.addEventListener("load", function() {
 	var sendButtonElement = document.getElementById("send_button");
 
 	sendButtonElement.addEventListener("click", function() {
-		console.log("test");
 		var url = "start";
 		xmlHttpRequest = new XMLHttpRequest();
 		xmlHttpRequest.onreadystatechange = checkStartRequest;
@@ -97,3 +100,8 @@ window.addEventListener("load", function() {
 	//
 	// setInterval(sendUpdateRequest, 1000);
 }, false);
+
+window.addEventListener('beforeunload', function(event) {
+  console.log('I am the 1st one.');
+  // これでブラウザバック時にセッションを削除する．
+});

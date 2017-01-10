@@ -16,6 +16,8 @@ import project.drawwordchain.model.Drawing;
 import project.drawwordchain.model.FirstChar;
 import project.drawwordchain.model.User;
 
+import javax.servlet.http.Cookie;
+
 @WebServlet("/project/drawwordchain/start")
 public class StartServlet extends ActionServlet {
 
@@ -65,6 +67,11 @@ public class StartServlet extends ActionServlet {
         PrintWriter writer = response.getWriter();
         writer.append(json);
         writer.flush();
+
+		Cookie cookie[] = request.getCookies();
+		for (int i = 0 ; i < cookie.length ; i++){
+        	System.out.println(cookie[i].getName() + " = " + cookie[i].getValue());
+      	}
 	}
 
 }
