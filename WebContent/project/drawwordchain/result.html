@@ -6,11 +6,47 @@
     <meta charset="UTF-8">
     <title>絵しりとり</title>
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link href="css/result.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <div>
         <h1>結果発表</h1>
     </div>
-</body>
+    <div><button id="can" type="button">a</button></div>
+
+
+    <div class="parent" id="gamediv">
+
+    <script type="text/javascript">
+     document.getElementById('can').addEventListener("click", function() {
+      for(var i = 0; i < 10; i++) {
+
+        /* ID=gamedivの要素を取得 */
+        var obj = document.getElementById('gamediv');
+        /* canvasの要素を生成 */
+        var canvas = document.createElement('canvas');
+        canvas.id = "gamecanvas";    //ID
+        canvas.height = 400;         //サイズ　縦
+        canvas.width = 400;          //サイズ　横
+        /* gamedivに、新しく作ったgamecanvasを追加 */
+        obj.appendChild(canvas);
+
+        var o = document.createElement("img");
+        o.id = "gamecanvas";
+
+        if (i % 2 == 0) {
+          o.src = "img/maru.png";
+        }
+        else {
+          o.src = "img/batu.png";
+        }
+        document.getElementById("gamediv").appendChild(o);
+      }
+
+      }, false);
+    </script>
+
+
+  </body>
 </html>

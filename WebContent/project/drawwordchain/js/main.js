@@ -41,7 +41,14 @@ window.addEventListener("load", function() {
 	// 送信ボタンのEventListener
 	document.getElementById("send_button").addEventListener("click", function() {
 		// 画像->base64データに変換
+    var data = canvas.toDataURL("image/jpeg");
+    alert(data)
 
+
+//    var image = new Image();
+//    image.src = data;
+//		image.onload = function() {
+//		 ctx2.drawImage(image, 0, 0);
 
 		// 画像送信の記述なし
 	}, false);
