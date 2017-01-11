@@ -21,12 +21,9 @@ public class ResultJson{
     builder.append("{");
     builder.append("\"statement\":[");
 
-    builder.append("{");
-    builder.append("\"name\":\"").append(statement[0].getName()).append("\"");
-
     for(Statement statement : statementList){
       builder.append("{");
-      builder.append("\"name\":\"").append(statement.getName()).append("\",");
+      builder.append("\"name\":\"").append(statement.getUser()).append("\",");
       builder.append("\"data\":\"").append(statement.getImageData()).append("\"");
       builder.append("}");
       //最後のみ,を省く
@@ -54,3 +51,5 @@ public class ResultJson{
 
     builder.append("]");
     builder.append("}");
+  }
+}
