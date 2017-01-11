@@ -1,6 +1,6 @@
 package project.drawwordchain.model;
 
-public class CheckWord {
+public class CheckSentence {
   //濁音、半濁音、促音、拗音のリスト。計３０文字
   char[] sonantList = {'が','ぎ','ぐ','げ','ご','ざ','じ',
     'ず','ぜ','ぞ','だ','ぢ','づ','で','ど','ば','び','ぶ','べ',
@@ -14,15 +14,15 @@ public class CheckWord {
   //しりとりの一つ目の単語と二つ目の単語がしりとりとしての正否を判定するメソッド
   //引数(一つ目の単語,二つ目の単語)
   //戻り値は合っていればtrue,間違っていればfalse
-  public boolean checkWord(String word,String nextWord){
+  public boolean checkSentence(String sentence,String nextSentence){
     //最後の文字取得
-    char endChar = word.charAt(word.length()-1);
+    char endChar = sentence.charAt(sentence.length()-1);
 	  //長音が最後に来た場合は長音の前の文字を取得
 	  if(endChar == 'ー'){
-		  endChar = word.charAt(word.length()-2);
+		  endChar = sentence.charAt(sentence.length()-2);
 	  }
     //最初の文字提出
-	  char firstChar = nextWord.charAt(0);
+	  char firstChar = nextSentence.charAt(0);
     //濁音、半濁音、促音、拗音が来た場合清音に変換する
 	  for(int i=0;i<30;i++){
 		  if(sonantList[i]==endChar){

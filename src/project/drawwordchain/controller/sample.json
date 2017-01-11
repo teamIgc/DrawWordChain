@@ -15,3 +15,20 @@
         "message": "fuck"
     }]
 }
+
+
+
+
+
+
+/*ResultJsonの内容*/
+{
+  "statement": [
+    {"name":"matsuura","data":"imagedata"},
+    {"name":"tsujino","data":"imagedata"}
+  ],
+  "judge":[
+    true,
+    false
+    ]
+}
