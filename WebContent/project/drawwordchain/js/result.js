@@ -1,6 +1,11 @@
 var xmlHttpRequest;
 
-var json_data2 = {
+var json_data = '{"name":"Penguin Statue","height":20,"weight":0.25,"price":1500,"memo":"かわいいペンギンの置物"}';
+
+
+var json_text = '{"ary":[0,1,2],"obj":{"a":0,"b":1,"c":2}}';
+var json_data2 =
+{
   "statement":[
     {"name":"A君",
       "data":"111",
@@ -16,25 +21,18 @@ var json_data2 = {
     false,
     true
     ]
-};
-
-
-var json_text = '{"ary":[0,1,2],"obj":{"a":0,"b":1,"c":2}}';
-var json_data = {
-  "name":"Penguin Statue",
-  "height":20,
-  "weight":0.25,
-  "price":1500,
-  "memo":"かわいいペンギンの置物"
-};
+}
 
 function JsonParse(text){
-	return eval("(" + text + ")");
+return eval("(" + text + ")");
 }
-var obj = JsonParse(json_data);
 
-// テスト出力
-console.log(obj);
+  json_data2 = JSON.stringify(json_data2);
+	var obj = JSON.parse(json_data2);
+	// テスト出力
+	console.log(obj);
+  console.log(obj.statement[2].name);
+  console.log(obj.judge.length);
 
 
 // var data = JSON.parse(json_data);
