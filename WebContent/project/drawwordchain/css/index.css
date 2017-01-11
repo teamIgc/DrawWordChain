@@ -24,11 +24,11 @@ h1 {
     color: #fff;
 }
 
-dl.search2 {
+dl.name_area {
     position: relative;
 }
 
-dl.search2 dt {
+dl.name_area dt {
     margin-right: 350px;
     margin-left: 250px;
     padding: 8px;
@@ -36,7 +36,7 @@ dl.search2 dt {
     border: 1px solid #aaa;
 }
 
-dl.search2 dt input {
+dl.name_area dt input {
     width: 100%;
     height: 24px;
     line-height: 24px;
@@ -44,7 +44,7 @@ dl.search2 dt input {
     border: none;
 }
 
-dl.search2 dd {
+dl.name_area dd {
     position: absolute;
     top: 0;
     right: 0;
