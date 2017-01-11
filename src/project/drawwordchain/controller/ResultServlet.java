@@ -59,6 +59,9 @@ public class ResultServlet extends ActionServlet {
 
         // DrawingをapplicationScopeから削除
         application.removeAttribute("drawing");
+
+		// userをSessionScopeから削除
+		session.removeAttribute("user");
 	}
 
 }
