@@ -1,23 +1,46 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>絵しりとり</title>
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link href="css/result.css" rel="stylesheet" type="text/css">
+    <link href="css/reset.css" rel="stylesheet" type="text/css">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-    <div>
-        <h1>結果発表</h1>
+    <h1>お絵かきしりとり</h1>
+    <hr>
+    解答<input type="text" id="word">
+    <button id="send_button">送信</button>
+    <button id="start_button">開始</button>
+
+    <canvas id="myCanvas" width="700" height="400" style="border: 1px solid black;"></canvas>
+    <div id="canvasmenu">
+        <div class="menuicon" id="clear">×</div>
+        <div class="menuicon" id="colorf5f5f5">消</div>
+        <div class="menuicon" id="size14">太</div>
+        <div class="menuicon" id="size7">中</div>
+        <div class="menuicon" id="size3">細</div>
+        <div class="menuicon" id="colore91e63" style="background-color:#e91e63"></div>
+        <div class="menuicon" id="colorffeb3b" style="background-color:#ffeb3b"></div>
+        <div class="menuicon" id="colorff4801" style="background-color:#ff4801"></div>
+        <div class="menuicon" id="color536dfe" style="background-color:#536dfe"></div>
+        <div class="menuicon" id="color009688" style="background-color:#009688"></div>
+        <div class="menuicon" id="color00e676" style="background-color:#00e676"></div>
+        <div class="menuicon" id="color555555" style="background-color:#555555"></div>
+        <div class="menuicon" id="alpha10" style="background-color:rgba(255,72,1, 1.0)">10</div>
+        <div class="menuicon" id="alpha6" style="background-color:rgba(255,72,1, 0.6)">6</div>
+        <div class="menuicon" id="alpha3" style="background-color:rgba(255,72,1, 0.3)">3</div>
+        <div class="menuicon" id="alpha1" style="background-color:rgba(255,72,1, 0.1)">1</div>
+
     </div>
-    <div><button id="can" type="button">a</button></div>
 
-    <div class="parent" id="gamediv">
-      <ul id="demo"></ul>
+    <div id="player_area">
+    </div>
 
-      <script type="text/javascript" src="js/result.js"></script>
-  </body>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/draw.js"></script>
+</body>
+
 </html>
