@@ -4,22 +4,32 @@ public class Statement {
 
 	private User user;
 
-	private String message;
+	private String word;
+
+	private String imgData;
 
 	public void setUser(User user) {
 		this.user = user;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setWord(String word) {
+		this.word = word;
+	}
+
+	public void setImageData(String imgData) {
+		this.imgData = imgData;
 	}
 
 	public User getUser() {
 		return this.user;
 	}
 
-	public String getMessage() {
-		return this.message;
+	public String getWord() {
+		return this.word;
+	}
+
+	public String getImageData() {
+		return this.imgData;
 	}
 
 }
