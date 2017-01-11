@@ -1,4 +1,5 @@
 var xmlHttpRequest;
+var ws = new WebSocket('ws://localhost:8080/isp2/project/WebSocketTest/broadcast');
 
 function checkStartRequest() {
     // 開始ボタンのレスポンス処理部分
@@ -27,9 +28,9 @@ function receiveStartResponse() {
 
 // ページ読み込み時
 window.addEventListener("load", function() {
+
 	// 開始ボタンのEventListener
-    var startButtonElement = document.getElementById("start_button");
-    startButtonElement.addEventListener("click", function() {
+    document.getElementById("start_button").addEventListener("click", function() {
         var url = "start";
         xmlHttpRequest = new XMLHttpRequest();
         xmlHttpRequest.onreadystatechange = checkStartRequest;
@@ -38,12 +39,17 @@ window.addEventListener("load", function() {
     }, false);
 
 	// 送信ボタンのEventListener
-	var sendButtonElement = document.getElementById("send_button");
-	sendButtonElement.addEventListener("click", function() {
+	document.getElementById("send_button").addEventListener("click", function() {
 		// 画像->base64データに変換
 
 
 		// 画像送信の記述なし
-
 	}, false);
+
+	// 以下読み込み時の処理
+	ws.onmessage = function(e) {
+		var messageElement =  document.getElementById("message");
+		messageElement.innerHTML = e.data;
+	};
+
 }, false);
