@@ -40,11 +40,9 @@ window.addEventListener("load", function() {
 	// 送信ボタンのEventListener
 	var sendButtonElement = document.getElementById("send_button");
 	sendButtonElement.addEventListener("click", function() {
-		// 画像->Jsonデータに変換
-		var data = ctx.getImageData(0, 0, canvas.width, canvas.height);
-		console.log(data);
-		console.log(JSON.stringify(data));
-		alert(JSON.stringify(data));
+		// 画像->base64データに変換
+
+
 		// 画像送信の記述なし
 
 	}, false);
