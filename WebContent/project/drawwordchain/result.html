@@ -15,38 +15,9 @@
     </div>
     <div><button id="can" type="button">a</button></div>
 
-
     <div class="parent" id="gamediv">
+      <ul id="demo"></ul>
 
-    <script type="text/javascript">
-     document.getElementById('can').addEventListener("click", function() {
-      for(var i = 0; i < 10; i++) {
-
-        /* ID=gamedivの要素を取得 */
-        var obj = document.getElementById('gamediv');
-        /* canvasの要素を生成 */
-        var canvas = document.createElement('canvas');
-        canvas.id = "gamecanvas";    //ID
-        canvas.height = 400;         //サイズ　縦
-        canvas.width = 400;          //サイズ　横
-        /* gamedivに、新しく作ったgamecanvasを追加 */
-        obj.appendChild(canvas);
-
-        var o = document.createElement("img");
-        o.id = "gamecanvas";
-
-        if (i % 2 == 0) {
-          o.src = "img/maru.png";
-        }
-        else {
-          o.src = "img/batu.png";
-        }
-        document.getElementById("gamediv").appendChild(o);
-      }
-
-      }, false);
-    </script>
-
-
+      <script type="text/javascript" src="js/result.js"></script>
   </body>
 </html>
