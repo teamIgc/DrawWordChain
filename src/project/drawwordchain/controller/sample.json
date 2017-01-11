@@ -24,8 +24,8 @@
 /*ResultJsonの内容*/
 {
   "statement": [
-    {"name":"matsuura","data":"imagedata"},
-    {"name":"tsujino","data":"imagedata"}
+    {"name":"matsuura","data":"絵のデータ","word":"絵の名前"},
+    {"name":"tsujino","data":"絵のデータ","wodl":"絵の名前"}
   ],
   "judge":[
     true,
