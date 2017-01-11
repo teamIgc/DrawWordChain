@@ -56,6 +56,9 @@ public class ResultServlet extends ActionServlet {
 		PrintWriter writer = response.getWriter();
 		writer.append(json);
 		writer.flush();
+
+        // DrawingをapplicationScopeから削除
+        application.removeAttribute("drawing");
 	}
 
 }
