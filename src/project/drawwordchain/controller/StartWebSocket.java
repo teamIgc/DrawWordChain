@@ -6,6 +6,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import javax.websocket.OnOpen;
+import javax.websocket.OnMessage;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
@@ -14,15 +15,22 @@ public class StartWebSocket {
 
     private static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
 
+
     @OnOpen
     public void connect(Session session) {
+        System.out.println("stest1");
         sessions.add(session);
-        broadcast();
     }
 
-    public void broadcast() {
+    @OnMessage
+    public void echoPlayerName(String playerName) {
+        System.out.println("stest2");
+        playerNameBroadcast(playerName);
+    }
+
+    public void playerNameBroadcast(String playerName) {
         for ( Session s : sessions ) {
-            s.getAsyncRemote().sendText("message");
+            s.getAsyncRemote().sendText(playerName);
         }
     }
 }
