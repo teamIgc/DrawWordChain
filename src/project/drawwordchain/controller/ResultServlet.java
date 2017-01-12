@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import project.drawwordchain.model.Drawing;
 import project.drawwordchain.model.CheckWord;
+import project.drawwordchain.model.ResultJson;
+import project.drawwordchain.model.Statement;
 import project.drawwordchain.model.User;
 
 import javax.servlet.http.Cookie;
@@ -26,10 +28,10 @@ public class ResultServlet extends ActionServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // アプリケーションスコープの作成
-        ServletContext application = this.getServletContext();
+        ServletContext context = this.getServletContext();
 
         // スコープからDrawingオブジェクトを取得
-        Drawing drawing = (Drawing)application.getAttribute("drawing");
+        Drawing drawing = (Drawing)context.getAttribute("drawing");
 
         // 文字判定
         List<Boolean> judgeList = new ArrayList<Boolean>();
@@ -39,8 +41,8 @@ public class ResultServlet extends ActionServlet {
         // 最初の文字を決めるメソッド
 		CheckWord cS = new CheckWord();
         for ( int i = 0; i <= sList.size(); i++ ) {
-            String word = sList[i].getWord();
-            String nextWord = sList[++i].getWord();
+            String word = sList.get(i).getWord();
+            String nextWord = sList.get(++i).getWord();
             judgeList.add(cS.checkWord(word,nextWord));
         }
 
@@ -58,10 +60,10 @@ public class ResultServlet extends ActionServlet {
 		writer.flush();
 
         // DrawingをapplicationScopeから削除
-        application.removeAttribute("drawing");
+        context.removeAttribute("drawing");
 
 		// userをSessionScopeから削除
-		session.removeAttribute("user");
+		request.getSession().removeAttribute("user");
 	}
 
 }

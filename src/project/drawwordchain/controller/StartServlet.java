@@ -29,13 +29,13 @@ public class StartServlet extends ActionServlet {
 		FirstChar firstChar = new FirstChar();
 
         // アプリケーションスコープの作成
-        ServletContext application = this.getServletContext();
+        ServletContext context = this.getServletContext();
 
         // jsonファイルの作成
         StringBuilder builder = new StringBuilder();
 
         // スコープからDrawingオブジェクトを取得
-        Drawing drawing = (Drawing)application.getAttribute("drawing");
+        Drawing drawing = (Drawing)context.getAttribute("drawing");
 
 
         // Json作成

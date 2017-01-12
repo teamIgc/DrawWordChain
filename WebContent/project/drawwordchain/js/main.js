@@ -1,5 +1,5 @@
 var xmlHttpRequest;
-var ws = new WebSocket('ws://localhost:8080/isp2/project/WebSocketTest/broadcast');
+var ws = new WebSocket('ws://localhost:8080/isp2/project/drawwordchain/startbroadcast');
 
 function checkStartRequest() {
     // 開始ボタンのレスポンス処理部分
@@ -42,7 +42,7 @@ window.addEventListener("load", function() {
 	document.getElementById("send_button").addEventListener("click", function() {
 		// 画像->base64データに変換
     var data = canvas.toDataURL("image/jpeg");
-    alert(data)
+    alert(data);
 
 
 //    var image = new Image();
@@ -54,9 +54,9 @@ window.addEventListener("load", function() {
 	}, false);
 
 	// 以下読み込み時の処理
-	ws.onmessage = function(e) {
-		var messageElement =  document.getElementById("message");
-		messageElement.innerHTML = e.data;
+	ws.onmessage = function(receive) {
+		var playerAreaElement =  document.getElementById("player_area");
+		playerAreaElement.innerHTML = receive.data;
 	};
 
 }, false);

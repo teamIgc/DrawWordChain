@@ -32,8 +32,8 @@
 // 		User user = (User)session.getAttribute("user");
 //
 // 		if(user != null) {
-// 			ServletContext application = this.getServletContext();
-// 			Drawing drawing = (Drawing)application.getAttribute("drawing");
+// 			ServletContext context = this.getServletContext();
+// 			Drawing drawing = (Drawing)context.getAttribute("drawing");
 //
 // 			StringBuilder builder = new StringBuilder();
 // 			builder.append("{");
