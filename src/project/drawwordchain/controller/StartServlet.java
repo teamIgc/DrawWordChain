@@ -13,26 +13,29 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import project.drawwordchain.model.Drawing;
+import project.drawwordchain.model.FirstChar;
 import project.drawwordchain.model.User;
+
+import javax.servlet.http.Cookie;
 
 @WebServlet("/project/drawwordchain/start")
 public class StartServlet extends ActionServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // 最初の文字を決めるメソッド
-		Character character = new Character();
+		FirstChar firstChar = new FirstChar();
 
         // アプリケーションスコープの作成
-        ServletContext application = this.getServletContext();
+        ServletContext context = this.getServletContext();
 
         // jsonファイルの作成
         StringBuilder builder = new StringBuilder();
 
         // スコープからDrawingオブジェクトを取得
-        Drawing drawing = (Drawing)application.getAttribute("drawing");
+        Drawing drawing = (Drawing)context.getAttribute("drawing");
 
 
         // Json作成
@@ -64,6 +67,11 @@ public class StartServlet extends ActionServlet {
         PrintWriter writer = response.getWriter();
         writer.append(json);
         writer.flush();
+
+		Cookie cookie[] = request.getCookies();
+		for (int i = 0 ; i < cookie.length ; i++){
+        	System.out.println(cookie[i].getName() + " = " + cookie[i].getValue());
+      	}
 	}
 
 }
