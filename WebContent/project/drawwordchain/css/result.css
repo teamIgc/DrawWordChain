@@ -14,7 +14,7 @@ canvas {
   margin-right: 400px;
   margin-left: 450px;
   overflow-x:scroll;
-  width:500px;
+  width:450px;
   height:500px;
   display: inline-block;
 }
@@ -26,7 +26,7 @@ canvas {
 .child .child-menu {
   position: absolute;
   left: 500px;
-  width:500px;
+  width:450px;
   top:0px;
   border:4px
   solid black;
