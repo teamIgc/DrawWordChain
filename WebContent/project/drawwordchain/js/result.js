@@ -64,7 +64,7 @@ function receiveResponse() {
 //  var response = JSON.stringify(json_data2); //おそらく不要
 // response = JSON.parse(xmlHttpRequest.responseText);
 //  response = JSON.parse(response);//Jsonをjavascriptのオブジェクトに変換
-  var response = eval("(" + json_data2 + ")");
+  var response = eval("(" + xmlHttpRequest.responseText + ")");
   for(var i=0; i<response.statement.length; i++){
     CreateText(response.statement[i].name,response.statement[i].word);
     Base64ToImage(response.statement[i].data);//画像表示
