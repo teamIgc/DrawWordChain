@@ -12,7 +12,7 @@
     ctx = canvas.getContext('2d');
     ctx.beginPath();
     ctx.fillStyle = "#f5f5f5";
-    ctx.fillRect(0, 0, 700, 400);
+    ctx.fillRect(0, 0, 500, 500);
 
     //初期値（サイズ、色、アルファ値）の決定
     var defosize = 7;
