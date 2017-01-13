@@ -13,7 +13,7 @@ var json_data2 =
     ]
 }
 
-
+//たぶん使わない
 function JsonParse(text){
   return eval("(" + text + ")");
 }
@@ -24,21 +24,6 @@ function JsonParse(text){
 	// console.log(obj);
   // console.log(obj.statement[2].name);
   // console.log(obj.judge.length);
-
-
-  // 返信データの処理
-function receiveResponse() {
-  var response = JSON.stringify(json_data2); //おそらく不要
-  // response = JSON.parse(xmlHttpRequest.responseText);
-  response = JSON.parse(response);//Jsonをjavascriptのオブジェクトに変換
-  for(var i=0; i<response.statement.length; i++){
-    CreateText(response.statement[i].name,response.statement[i].word);
-    Base64ToImage(response.statement[i].data);//画像表示
-    if(i != response.statement.length-1){
-      JudgeToImage(response.judge[i]);//正誤判定
-    }
-  }
-}
 
 // なぜか使えない
 // function createCanvas(canvasNum,canvasWord){
@@ -57,6 +42,37 @@ function receiveResponse() {
 //     ctx2.drawImage(image, 0, 0);
 //   }
 // }
+
+
+//サーバからのデータ受信の状態をチェック
+function checkReadyState(){
+  if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+    receiveResponse();//返信データの処理
+  }
+}
+
+window.addEventListener("load", function() {
+  var url = "result";
+  xmlHttpRequest = new XMLHttpRequest();
+  xmlHttpRequest.onreadystatechange = checkReadyState;
+  xmlHttpRequest.open("GET", url, true);
+  xmlHttpRequest.send(null);
+}
+
+// 返信データの処理 66 or 68行目 Jsonのオブジェクト化をparseかevalの違い
+function receiveResponse() {
+//  var response = JSON.stringify(json_data2); //おそらく不要
+// response = JSON.parse(xmlHttpRequest.responseText);
+//  response = JSON.parse(response);//Jsonをjavascriptのオブジェクトに変換
+  var response = eval("(" + xmlHttpRequest.responseText + ")");
+  for(var i=0; i<response.statement.length; i++){
+    CreateText(response.statement[i].name,response.statement[i].word);
+    Base64ToImage(response.statement[i].data);//画像表示
+    if(i != response.statement.length-1){
+      JudgeToImage(response.judge[i]);//正誤判定
+    }
+  }
+}
 
 //上が使えないため画像を直接埋め込むタイプ
 function Base64ToImage(base64img) {
@@ -77,9 +93,10 @@ function JudgeToImage(hantei){
   document.getElementById("gamediv").appendChild(o);
 }
 
+//描いた人の名前とイラスト名表示
 function CreateText(name,word){
   var t = document.createTextNode("描き手:"+name+"、イラスト名:"+word);
   document.getElementById("gamediv").appendChild(t);
 }
 
-receiveResponse();
+receiveResponse();//テスト用なのであとでコメントアウトしてね

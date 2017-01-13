@@ -4,6 +4,8 @@ import java.io.IOException;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.websocket.OnOpen;
 import javax.websocket.OnMessage;
@@ -14,6 +16,8 @@ import javax.websocket.server.ServerEndpoint;
 public class StartWebSocket extends WebSocketScope {
 
     private static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
+
+    private static final List<String> playerList = new ArrayList<String>();
 
     @OnOpen
     public void connect(Session session) {
