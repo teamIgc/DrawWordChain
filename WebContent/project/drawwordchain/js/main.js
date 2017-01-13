@@ -17,16 +17,32 @@ function receiveStartResponse() {
         playerAreaElement.removeChild(playerAreaElement.lastChild);
     }
 
-    for (var i = 0; i < response.playerList.length; i++) {
-        var playerElement = document.createElement("span");
-        playerAreaElement.appendChild(playerElement);
-        playerElement.innerHTML = "player" + (i + 1) + ":" + response.playerList[i];
-        playerAreaElement.appendChild(document.createElement("br"));
-    }
+    var playerElement = document.createElement("span");
+    playerAreaElement.appendChild(playerElement);
+    playerElement.innerHTML = response.playerName;
+    playerAreaElement.appendChild(document.createElement("br"));
+
+    // playerListを返した場合の処理
+    // for (var i = 0; i < response.playerList.length; i++) {
+    //     var playerElement = document.createElement("span");
+    //     playerAreaElement.appendChild(playerElement);
+    //     playerElement.innerHTML = "player" + (i + 1) + ":" + response.playerList[i];
+    //     playerAreaElement.appendChild(document.createElement("br"));
+    // }
+}
+
+function sendToStartServlet() {
+    var url = "start";
+    xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.onreadystatechange = checkStartRequest;
+    xmlHttpRequest.open("GET", url, true);
+    xmlHttpRequest.send(null);
 }
 
 // ページ読み込み時
 window.addEventListener("load", function() {
+
+    sendToStartServlet();
 
 	// 開始ボタンのEventListener
     document.getElementById("start_button").addEventListener("click", function() {
@@ -66,7 +82,7 @@ window.addEventListener("load", function() {
         console.log("ctest2");
 		var playerAreaElement =  document.getElementById("player_area");
         console.log(receive.data);
-		playerAreaElement.innerHTML = receive.data;
+		// playerAreaElement.innerHTML = receive.data;
 	};
 
 }, false);

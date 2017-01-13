@@ -25,9 +25,10 @@ public class StartServlet extends ActionServlet {
 		User player = (User)session.getAttribute("user");
 
 		//Jsonの作成
+		StringBuilder builder = new StringBuilder();
 		//{"playerName" : "playerだよ"}
 		builder.append('{');
-		builder.append('\"').append('playerName').append('\"');
+		builder.append('\"').append("playerName").append('\"');
 		builder.append(':');
 		builder.append('\"').append(player.getName()).append('\"');
         builder.append('}');
