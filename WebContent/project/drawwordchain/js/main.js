@@ -79,17 +79,47 @@ window.addEventListener("load", function() {
 
 	// 送信ボタンのEventListener
 	document.getElementById("send_button").addEventListener("click", function() {
-		// 画像->base64データに変換
-        var data = canvas.toDataURL("image/jpeg");
-        alert(data);
+    //textformに日本語のみが入力されているかの判定
+    for(var i=0;i<document.getElementById("word").value.length;i++){
+      if(!(document.getElementById("word").value.match(/^[\u3040-\u309F]+$/))){
+        alert("平仮名のみで入力してください");
+      }
+      //未入力を看破できない誰か助けて
+      //  else if(document.getElementById("word").value==""){
+      //    alert("絵の名前を入力してください");
+      //    return;
+      // }
+    }
 
-        //    var image = new Image();
-        //    image.src = data;
-        //		image.onload = function() {
-        //		 ctx2.drawImage(image, 0, 0);
+    //プレイヤー名の中に絵のタイトルを表示(一時的なもの)
+    var playerName = document.getElementById("player_name");
+    playerName.innerHTML= document.getElementById("word").value;
+
+
+    // 画像->base64データに変換
+        var data = canvas.toDataURL("image/jpeg");
+        // alert(data);
+
+        var img = new Image();
+        img.src = data;
+        img.width = 250;
+        img.height = 250;
+        document.getElementById('pict_display').appendChild(img);
+        //がめんクリア
+        ctx.beginPath();
+        ctx.fillStyle = "#f5f5f5";
+        ctx.globalAlpha = 1.0;
+        ctx.fillRect(0, 0, 500, 500);
+
+        //
+        // var image = new Image();
+        // image.src = data;
+        // image.onload = function() {
+        //   ctx2.drawImage(image, 0, 0);
+        // }
 
 		// 画像送信の記述なし
-	}, false);
+}, false);
 
 }, false);
 
