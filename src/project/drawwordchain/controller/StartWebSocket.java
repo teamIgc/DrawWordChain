@@ -15,6 +15,8 @@ public class StartWebSocket extends WebSocketScope {
 
     private static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
 
+    private static final List<String> playerList = new ArrayList<String>();
+
     @OnOpen
     public void connect(Session session) {
         sessions.add(session);
