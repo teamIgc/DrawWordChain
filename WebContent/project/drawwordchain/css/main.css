@@ -53,6 +53,13 @@ canvas {
 }
 
 #pict_display{
-  
+  border: 1px solid black;
+  margin-top:560px;
+  margin-left:40px;
+  margin-right:40px;
+  height: 250px;
+
+  white-space: nowrap;
+  overflow: scroll;
 
 }
