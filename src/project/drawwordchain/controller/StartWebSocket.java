@@ -11,21 +11,19 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 @ServerEndpoint("/project/drawwordchain/startbroadcast")
-public class StartWebSocket {
+public class StartWebSocket extends WebSocketScope {
 
     private static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
 
-
     @OnOpen
     public void connect(Session session) {
-        System.out.println("stest1");
         sessions.add(session);
     }
 
     @OnMessage
     public void echoPlayerName(String playerName) {
-        System.out.println("stest2");
-        playerNameBroadcast(playerName);
+        setPlayer(playerName);
+        playerNameBroadcast(getPlayer());
     }
 
     public void playerNameBroadcast(String playerName) {
