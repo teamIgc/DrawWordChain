@@ -46,10 +46,22 @@ canvas {
   height: 300px;
   width: 150px;
   border: 1px solid green;
+}
+
+#player{
+  text-align: center;
+  line-height: 30px;
+  height:30px;
+  width:150px;
+}
+
+#player_name{
+  width:150px;
+  height: 90%;
+  border-top:1px solid pink;
   /*自動改行禁止*/
   white-space: nowrap;
   overflow: scroll;
-
 }
 
 #pict_display{
@@ -58,7 +70,7 @@ canvas {
   margin-left:40px;
   margin-right:40px;
   height: 250px;
-
+  /*自動改行禁止*/
   white-space: nowrap;
   overflow: scroll;
 
