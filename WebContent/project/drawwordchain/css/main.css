@@ -2,11 +2,12 @@ h1 {
     font-size: 2em;
 }
 
+
+
 canvas {
     background-color: white;
-    margin: 0px 40px;
-    width: 700px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
 }
 
 .menuicon {
@@ -18,8 +19,25 @@ canvas {
     width: 30px;
     height: 30px;
     border-radius: 50px;
+
+}
+
+#canvas_area{
+  float: left;
+  margin-left: 40px;
+}
+
+#answer_area{
+  margin-top:10px;
 }
 
 #player_area {
-    margin-top: 50px;
+  /*自動改行禁止*/
+  white-space: nowrap;
+  overflow: scroll;
+  font-size: 1em;
+  margin-left:560px;
+  height: 100px;
+  width: 150px;
+  border: 1px solid green;
 }

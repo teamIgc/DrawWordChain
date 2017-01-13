@@ -11,11 +11,17 @@
 <body>
     <h1>お絵かきしりとり</h1>
     <hr>
-    解答<input type="text" id="word">
-    <button id="send_button">送信</button>
-    <button id="start_button">開始</button>
 
-    <canvas id="myCanvas" width="700" height="400" style="border: 1px solid black;"></canvas>
+    <div id="canvas_area">
+    <canvas id="myCanvas" width="500" height="500" style="border: 1px solid black;"></canvas>
+    <div id="answer_area">
+      解答
+      <input type="text" id="word">
+      <button id="send_button">送信</button>
+      <button id="start_button">開始</button>
+    </div>
+    </div>
+
     <div id="canvasmenu">
         <div class="menuicon" id="clear">×</div>
         <div class="menuicon" id="colorf5f5f5">消</div>
@@ -33,10 +39,20 @@
         <div class="menuicon" id="alpha6" style="background-color:rgba(255,72,1, 0.6)">6</div>
         <div class="menuicon" id="alpha3" style="background-color:rgba(255,72,1, 0.3)">3</div>
         <div class="menuicon" id="alpha1" style="background-color:rgba(255,72,1, 0.1)">1</div>
-
     </div>
 
     <div id="player_area">
+      プレイヤー名
+      <hr>
+    <ul>
+      <li>・プレイヤー名</li>
+      <li>・プレイヤー名２</li>
+      <li>・これはHTMLに直接打ち込んでます</li>
+      <li>・プ</li><li>・レ</li><li>・イ</li><li>・ヤ</li><li>・ー</li>
+      <li>・名</li><li>・を</li><li>・表</li><li>・示</li><li>・す</li>
+      <li>・る</li><li>・場</li><li>・所</li><li>・で</li><li>・す</li>
+
+    </ul>
     </div>
 
     <script type="text/javascript" src="js/main.js"></script>
