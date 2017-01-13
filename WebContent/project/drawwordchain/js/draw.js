@@ -2,11 +2,11 @@
     //HTML上の canvas タグを取得
     canvas = document.getElementById('myCanvas');
 
-    //レスポンシブ対応 画面サイズでキャンバスサイズを調整します
-    if (screen.width < 860) {
-        canvas.width = 700 * screen.width / 860;
-        canvas.height = 400 * screen.width / 860;
-    }
+    // //レスポンシブ対応 画面サイズでキャンバスサイズを調整します
+    // if (screen.width < 860) {
+    //     canvas.width = 700 * screen.width / 860;
+    //     canvas.height = 400 * screen.width / 860;
+    // }
 
     //キャンバスの背景カラーを決定。 fillRectは長方形に塗るメソッド
     ctx = canvas.getContext('2d');
@@ -106,7 +106,7 @@
                 ctx.beginPath();
                 ctx.fillStyle = "#f5f5f5";
                 ctx.globalAlpha = 1.0;
-                ctx.fillRect(0, 0, 700, 400);
+                ctx.fillRect(0, 0, 500, 500);
             }
         }
     }

@@ -11,7 +11,7 @@ canvas {
 }
 
 .menuicon {
-    float: left;
+    /*float: left;*/
     text-align: center;
     background: #EEE;
     border: 1px solid #DDD;
@@ -22,22 +22,32 @@ canvas {
 
 }
 
+#canvasmenu{
+  float:left;
+  margin-left:3px;
+}
+
 #canvas_area{
   float: left;
+  width: 500px;
   margin-left: 40px;
 }
 
 #answer_area{
+  float: right;
   margin-top:10px;
+
 }
 
 #player_area {
+  float: left;
+  margin-left: 10px;
+  font-size: 1em;
+  height: 300px;
+  width: 150px;
+  border: 1px solid green;
   /*自動改行禁止*/
   white-space: nowrap;
   overflow: scroll;
-  font-size: 1em;
-  margin-left:560px;
-  height: 100px;
-  width: 150px;
-  border: 1px solid green;
+
 }
