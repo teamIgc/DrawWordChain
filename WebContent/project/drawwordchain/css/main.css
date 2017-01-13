@@ -1,3 +1,7 @@
+body {
+    background-image: linear-gradient(-90deg, #FFA494, #ABCB95);
+}
+
 h1 {
     font-size: 2em;
 }
@@ -40,6 +44,7 @@ canvas {
 }
 
 #player_area {
+  background-color:#f5f5f5;
   float: left;
   margin-left: 10px;
   font-size: 1em;
@@ -65,6 +70,7 @@ canvas {
 }
 
 #pict_display{
+  background-color:#f5f5f5;
   border: 1px solid black;
   margin-top:560px;
   margin-left:40px;
