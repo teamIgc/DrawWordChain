@@ -12,11 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import project.drawwordchain.model.Drawing;
+// import project.drawwordchain.model.Drawing;
 import project.drawwordchain.model.CheckWord;
 import project.drawwordchain.model.ResultJson;
-import project.drawwordchain.model.Statement;
-import project.drawwordchain.model.User;
+// import project.drawwordchain.model.Statement;
+// import project.drawwordchain.model.User;
+import project.drawwordchain.model.DataManager;
 
 import javax.servlet.http.Cookie;
 
@@ -31,16 +32,17 @@ public class ResultServlet extends ActionServlet {
         ServletContext context = this.getServletContext();
 
         // スコープからDrawingオブジェクトを取得
-        Drawing drawing = (Drawing)context.getAttribute("drawing");
+        // Drawing drawing = (Drawing)context.getAttribute("drawing");
 
         // 文字判定
         List<Boolean> judgeList = new ArrayList<Boolean>();
-        // 各判定を格納
-        List<Statement> sList = drawing.getStatementList();
+
+				DataManager data = new DataManager ();//DataManager作る
+        List<Statement> sList = data.getStatementList();// 各判定を格納
 
         // 最初の文字を決めるメソッド
 		CheckWord cS = new CheckWord();
-        for ( int i = 0; i <= sList.size(); i++ ) {
+        for ( int i = 0; i < sList.size(); i++ ) {
             String word = sList.get(i).getWord();
             String nextWord = sList.get(++i).getWord();
             judgeList.add(cS.checkWord(word,nextWord));
