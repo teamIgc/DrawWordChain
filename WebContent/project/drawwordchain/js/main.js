@@ -68,16 +68,16 @@ window.addEventListener("load", function() {
 
 	// 送信ボタンのEventListener
 	document.getElementById("send_button").addEventListener("click", function() {
+        //絵のタイトル未入力の際の動作
+        if(!document.getElementById("word").value){
+             alert("絵の名前を入力してください");
+             return;
+        }
         //textformに日本語のみが入力されているかの判定
         for(var i=0;i<document.getElementById("word").value.length;i++){
           if(!(document.getElementById("word").value.match(/^[\u3040-\u309F]+$/))){
             alert("平仮名のみで入力してください");
           }
-          //未入力を看破できない誰か助けて
-          //  else if(document.getElementById("word").value==""){
-          //    alert("絵の名前を入力してください");
-          //    return;
-          // }
         }
 
         //プレイヤー名の中に絵のタイトルを表示(一時的なもの)
