@@ -43,7 +43,7 @@ canvas {
 
 }
 
-#player_area {
+#user_area {
   background-color:#f5f5f5;
   float: left;
   margin-left: 10px;
@@ -53,14 +53,14 @@ canvas {
   border: 1px solid green;
 }
 
-#player{
+#user{
   text-align: center;
   line-height: 30px;
   height:30px;
   width:150px;
 }
 
-#player_name{
+#user_name{
   width:150px;
   height: 90%;
   border-top:1px solid pink;
