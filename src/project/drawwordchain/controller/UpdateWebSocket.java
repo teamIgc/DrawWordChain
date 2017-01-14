@@ -21,39 +21,39 @@ public class UpdateWebSocket extends StartWebSocket {
 
     @OnOpen
     public void connect(Session session) {
-        String FirstChar = (new FirstChar() ).getChar();
+        // String FirstChar = (new FirstChar() ).getChar();
 
     }
 
     @OnClose
     public void onClose(Session session) {
-        System.out.println("close : " + session.getId());
-        //セッションIDをとり　それでセッション判別して対応しているnameを削除する
-        for (int i = 0; i < userList.size(); i++) {
-            if( userList.get(i).getSessionId() == session.getId() ) {
-                userList.remove(i);
-            }
-        }
-        sessions.remove(session);
-        userNameBroadcast();
+        // System.out.println("close : " + session.getId());
+        // //セッションIDをとり　それでセッション判別して対応しているnameを削除する
+        // for (int i = 0; i < userList.size(); i++) {
+        //     if( userList.get(i).getSessionId() == session.getId() ) {
+        //         userList.remove(i);
+        //     }
+        // }
+        // sessions.remove(session);
+        // userNameBroadcast();
     }
 
     @OnMessage
     public void echoUserName(String userName, Session session) {
-        System.out.println("メッセージの確認");
-        WebSocketUser wUser = new WebSocketUser();
-        wUser.setName(userName);
-        wUser.setSessionId(session.getId());
-        userList.add(wUser);
-        System.out.println("サイズ: "+userList.size());
-        userNameBroadcast();
+        // System.out.println("メッセージの確認");
+        // WebSocketUser wUser = new WebSocketUser();
+        // wUser.setName(userName);
+        // wUser.setSessionId(session.getId());
+        // userList.add(wUser);
+        // System.out.println("サイズ: "+userList.size());
+        // userNameBroadcast();
     }
 
     public void firstCharBroadcast() {
-        System.out.println("全プレイヤーに最初の文字を返却");
-        String firstChar = (new FirstChar() ).getChar();
-        for ( Session s : sessions ) {
-            s.getAsyncRemote().sendText();
-        }
+        // System.out.println("全プレイヤーに最初の文字を返却");
+        // String firstChar = (new FirstChar() ).getChar();
+        // for ( Session s : sessions ) {
+        //     s.getAsyncRemote().sendText();
+        // }
     }
 }
