@@ -8,3 +8,15 @@ body {
   height:600px;
   margin: auto;
 }
+
+#start_button {
+    margin: auto;
+    display: block;
+    width: 130px;
+    height: 42px;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+    background-color: #f66;
+    border: 1px solid #c66;
+}

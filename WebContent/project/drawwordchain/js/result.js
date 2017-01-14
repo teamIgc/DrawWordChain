@@ -61,10 +61,10 @@ window.addEventListener("load", function() {
 
 // 返信データの処理 66 or 68行目 Jsonのオブジェクト化をparseかevalの違い
 function receiveResponse() {
-  var response = JSON.stringify(json_data2); //おそらく不要
-  response = JSON.parse(response);//Jsonをjavascriptのオブジェクトに変換
+  // var response = JSON.stringify(json_data2); //おそらく不要
+  // response = JSON.parse(response);//Jsonをjavascriptのオブジェクトに変換
   // response = JSON.parse(xmlHttpRequest.responseText);
-  // var response = eval("(" + xmlHttpRequest.responseText + ")");
+  var response = eval("(" + xmlHttpRequest.responseText + ")");
   for(var i=0; i<response.statement.length; i++){
     CreateText(response.statement[i].name,response.statement[i].word);//描いた人の名前とイラスト名表示
     Base64ToImage(response.statement[i].data);//画像表示
