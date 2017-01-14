@@ -76,7 +76,7 @@ window.addEventListener("load", function() {
         }
         //textformに日本語のみが入力されているかの判定
         // for(var i=0;i<drawWord.value.length;i++){
-          if(!(drawWord.value.match(/^[\u3040-\u309F]+$/))){
+          if(!(drawWord.value.match(/^[\u3040-\u309F]+$/))&&!drawWord.value.match(/ー/)){
             alert("平仮名のみで入力してください");
             return;
           }
