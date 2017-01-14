@@ -34,12 +34,13 @@ public class StartWebSocket {
     public void onClose(Session session) {
         System.out.println("close : " + session.getId());
         //セッションIDをとり　それでセッション判別して対応しているnameを削除する
-        for (WebSocketUser wUser : userList) {
-            if( wUser.getSessionId() == session.getId() ) {
-                userList.remove(wUser);
+        for (int i = 0; i < userList.size(); i++) {
+            if( userList.get(i).getSessionId() == session.getId() ) {
+                userList.remove(i);
             }
         }
         sessions.remove(session);
+        userNameBroadcast();
     }
 
     @OnMessage
