@@ -77,6 +77,7 @@ window.addEventListener("load", function() {
         for(var i=0;i<document.getElementById("word").value.length;i++){
           if(!(document.getElementById("word").value.match(/^[\u3040-\u309F]+$/))){
             alert("平仮名のみで入力してください");
+            return;
           }
         }
 
