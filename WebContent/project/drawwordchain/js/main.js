@@ -69,7 +69,16 @@ window.addEventListener("load", function() {
 
         ws.onopen = function() {
         };
-        
+
+        ws.onmessage=function(receive){
+          //firstCharをplay_displayの最初に表示
+          var firstChar = recieve.data;
+          var element = cocument.createElement('p');
+          element.appendChild(document.createTextNode(firstChar));
+          document.getElementById("pict_display").appendChild(element);
+
+        };
+
     }, false);
 
 	// 送信ボタンのEventListener
@@ -95,8 +104,12 @@ window.addEventListener("load", function() {
 
         //プレイヤー名の中に絵のタイトルを表示(一時的なもの)
         var userName = document.getElementById("user_name");
-        userName.innerHTML= drawWord.value;
-
+//---------------あとで消す----------------------------
+        var drawTitle = document.createElement('div');
+        var text = document.createTextNode(drawWord.value);
+        drawTitle.appendChild(text);
+        userName.appendChild(drawTitle);
+//----------------------------------------------------
 
         // 画像->base64データに変換
             var data = canvas.toDataURL("image/jpeg");
@@ -107,6 +120,10 @@ window.addEventListener("load", function() {
             img.width = 250;
             img.height = 250;
             document.getElementById('pict_display').appendChild(img);
+            //---------------あとで消す----------------------------
+            // document.getElementById('pict_display').appendChild(drawTitle);
+            //----------------------------------------------------
+
             //がめんクリア
             ctx.beginPath();
             ctx.fillStyle = "#f5f5f5";
