@@ -16,5 +16,4 @@ public class DataManager {
 	public String getPlayerName() {
 		return "test";
 	}
-
 }

@@ -2,38 +2,21 @@ body {
   background-image: linear-gradient(-90deg, #FFA494, #ABCB95);
 }
 
-
-canvas {
-    background-color: white;
-    margin: 0px 40px;
-    width: 400px;
-    height: 400px;
-}
-
 .parent {
-  margin-right: 400px;
-  margin-left: 450px;
   overflow-x:scroll;
   width:450px;
   height:600px;
-  display: inline-block;
+  margin: auto;
 }
 
-.child {
-  position:relative;
-}
-
-.child .child-menu {
-  position: absolute;
-  left: 500px;
-  width:450px;
-  top:0px;
-  border:4px
-  solid black;
-  background-color: green;
-  display: none;
-}
-
-.child:hover .child-menu {
-  display: block;
+#start_button {
+    margin: auto;
+    display: block;
+    width: 130px;
+    height: 42px;
+    color: #fff;
+    line-height: 40px;
+    text-align: center;
+    background-color: #f66;
+    border: 1px solid #c66;
 }
