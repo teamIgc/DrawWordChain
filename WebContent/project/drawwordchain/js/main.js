@@ -59,11 +59,17 @@ function sendToStartServlet() {
 // ページ読み込み時
 window.addEventListener("load", function() {
 
+    // サーブレットからユーザ名を取得
     sendToStartServlet();
 
 
 	// 開始ボタンのEventListener
     document.getElementById("start_button").addEventListener("click", function() {
+        ws = new WebSocket('ws://'+ LOCATION +'/project/drawwordchain/updatebroadcast');
+
+        ws.onopen = function() {
+        };
+        
     }, false);
 
 	// 送信ボタンのEventListener

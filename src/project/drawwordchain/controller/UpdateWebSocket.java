@@ -14,20 +14,14 @@ import javax.websocket.OnMessage;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-import project.drawwordchain.model.WebSocketUser;
+import project.drawwordchain.model.FirstChar;
 
-@ServerEndpoint("/project/drawwordchain/startbroadcast")
-public class StartWebSocket {
-
-    protected static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
-
-    // 各jsでWebSocketをNewしているため，staticにしないと共有できない？
-    protected static final List<WebSocketUser> userList = new ArrayList<WebSocketUser>();
+@ServerEndpoint("/project/drawwordchain/updatebroadcast")
+public class UpdateWebSocket extends StartWebSocket {
 
     @OnOpen
     public void connect(Session session) {
-        System.out.println("open : " + session.getId());
-        sessions.add(session);
+        String FirstChar = (new FirstChar() ).getChar();
     }
 
     @OnClose
