@@ -5,13 +5,13 @@ import java.util.List;
 
 public class WebSocketScope {
 
-    private List<String> playerList = new ArrayList<String>();
+    private List<String> userList = new ArrayList<String>();
 
-    protected void setPlayer(String playerName) {
-        playerList.add(playerName);
+    protected void setUser(String userName) {
+        userList.add(userName);
     }
 
-    protected String getPlayer() {
-        return playerList.get(0);
+    protected String getUser() {
+        return userList.get(0);
     }
 }

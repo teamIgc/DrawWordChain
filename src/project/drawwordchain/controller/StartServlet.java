@@ -22,24 +22,24 @@ public class StartServlet extends ActionServlet {
 
 		// セッションスコープの作成
 		HttpSession session = request.getSession();
-		User player = (User)session.getAttribute("user");
+		User user = (User)session.getAttribute("user");
 
 
 		// 名前未入力(Userセッションなし == 直接main.htmlを開いた状態)の場合
-		if(player == null) {
+		if(user == null) {
 			// 送信者をセッションスコープに登録
-			player = new User();
-			player.setName("");
-			session.setAttribute("user", player);
+			user = new User();
+			user.setName("");
+			session.setAttribute("user", user);
 		} else {
 
 			//Jsonの作成
 			StringBuilder builder = new StringBuilder();
-			//{"playerName" : "playerだよ"}
+			//{"userName" : "userだよ"}
 			builder.append('{');
-			builder.append('\"').append("playerName").append('\"');
+			builder.append('\"').append("userName").append('\"');
 			builder.append(':');
-			builder.append('\"').append(player.getName()).append('\"');
+			builder.append('\"').append(user.getName()).append('\"');
 	        builder.append('}');
 
 	        String json = builder.toString();

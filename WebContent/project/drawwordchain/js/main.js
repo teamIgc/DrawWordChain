@@ -1,6 +1,8 @@
 var xmlHttpRequest;
 var ws;
 var myName;
+var LOCATION = "localhost:8080/isp2";
+//School: LOCATION = "ecl.info.kindai.ac.jp/16/isp2/warup/servlet/B17/";
 
 function checkStartRequest() {
     // 開始ボタンのレスポンス処理部分
@@ -21,7 +23,7 @@ function receiveStartResponse() {
 }
 
 function sendToStartWebSocket(playerName) {
-    ws = new WebSocket('ws://localhost:8080/isp2/project/drawwordchain/startbroadcast');
+    ws = new WebSocket('ws://'+ LOCATION +'/project/drawwordchain/startbroadcast');
     ws.onopen = function() {
         ws.send(playerName);
     };

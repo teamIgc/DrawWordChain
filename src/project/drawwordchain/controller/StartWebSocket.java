@@ -14,20 +14,19 @@ import javax.websocket.OnMessage;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import project.drawwordchain.model.WebSocketUser;
+
 @ServerEndpoint("/project/drawwordchain/startbroadcast")
 public class StartWebSocket extends WebSocketScope {
 
     private static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
 
-    private static final List<String> playerList = new ArrayList<String>();
+    private final List<WebSocketUser> userList = new ArrayList<WebSocketUser>();
 
     @OnOpen
     public void connect(Session session) {
-        System.out.println("接続の確認/sessionの保存");
+        System.out.println("open : " + session.getId());
         sessions.add(session);
-        for ( Session s : sessions ) {
-                System.out.println("全体 : " + s.getId());
-        }
     }
 
     @OnClose
@@ -37,25 +36,26 @@ public class StartWebSocket extends WebSocketScope {
     }
 
     @OnMessage
-    public void echoPlayerName(String playerName) {
+    public void echoUserName(String userName) {
         System.out.println("メッセージの確認");
-        playerList.add(playerName);
-        playerNameBroadcast();
+        WebSocketUser wUser = new WebSocketUser();
+        userList.add(userName);
+        userNameBroadcast();
     }
 
-    public void playerNameBroadcast() {
+    public void userNameBroadcast() {
         System.out.println("全プレイヤーにプレイヤー名を返却");
-        String playerNameColumn = "";
-        Iterator<String> iterator = playerList.iterator();
+        String userNameColumn = "";
+        Iterator<String> iterator = userList.iterator();
         while(iterator.hasNext()){
-            playerNameColumn += iterator.next();
+            userNameColumn += iterator.next();
             if(iterator.hasNext()) {
-                playerNameColumn += ",";
+                userNameColumn += ",";
             }
         }
-        System.out.println("送信データ:" + playerNameColumn);
+        System.out.println("送信データ:" + userNameColumn);
         for ( Session s : sessions ) {
-            s.getAsyncRemote().sendText(playerNameColumn);
+            s.getAsyncRemote().sendText(userNameColumn);
         }
     }
 }
