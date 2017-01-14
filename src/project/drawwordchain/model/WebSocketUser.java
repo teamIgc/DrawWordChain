@@ -8,7 +8,7 @@ public class WebSocketUser {
 	public void setName(String name) {
 		this.name = name;
 	}
-    public void setName(String sessionId) {
+    public void setSessionId(String sessionId) {
 		this.sessionId = sessionId;
 	}
 

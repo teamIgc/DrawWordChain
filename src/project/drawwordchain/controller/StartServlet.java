@@ -43,7 +43,6 @@ public class StartServlet extends ActionServlet {
 	        builder.append('}');
 
 	        String json = builder.toString();
-	        System.out.println(json);
 	        response.setContentType("application/json");
 	        PrintWriter writer = response.getWriter();
 	        writer.append(json);

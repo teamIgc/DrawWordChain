@@ -17,11 +17,12 @@ import javax.websocket.server.ServerEndpoint;
 import project.drawwordchain.model.WebSocketUser;
 
 @ServerEndpoint("/project/drawwordchain/startbroadcast")
-public class StartWebSocket extends WebSocketScope {
+public class StartWebSocket {
 
     private static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
 
-    private final List<WebSocketUser> userList = new ArrayList<WebSocketUser>();
+    // 各jsでWebSocketをNewしているため，staticにしないと共有できない？
+    private static final List<WebSocketUser> userList = new ArrayList<WebSocketUser>();
 
     @OnOpen
     public void connect(Session session) {
@@ -31,24 +32,33 @@ public class StartWebSocket extends WebSocketScope {
 
     @OnClose
     public void onClose(Session session) {
-        sessions.remove(session);
         System.out.println("close : " + session.getId());
+        //セッションIDをとり　それでセッション判別して対応しているnameを削除する
+        for (WebSocketUser wUser : userList) {
+            if( wUser.getSessionId() == session.getId() ) {
+                userList.remove(wUser);
+            }
+        }
+        sessions.remove(session);
     }
 
     @OnMessage
-    public void echoUserName(String userName) {
+    public void echoUserName(String userName, Session session) {
         System.out.println("メッセージの確認");
         WebSocketUser wUser = new WebSocketUser();
-        userList.add(userName);
+        wUser.setName(userName);
+        wUser.setSessionId(session.getId());
+        userList.add(wUser);
+        System.out.println("サイズ: "+userList.size());
         userNameBroadcast();
     }
 
     public void userNameBroadcast() {
         System.out.println("全プレイヤーにプレイヤー名を返却");
         String userNameColumn = "";
-        Iterator<String> iterator = userList.iterator();
+        Iterator<WebSocketUser> iterator = userList.iterator();
         while(iterator.hasNext()){
-            userNameColumn += iterator.next();
+            userNameColumn += iterator.next().getName();
             if(iterator.hasNext()) {
                 userNameColumn += ",";
             }

@@ -14,7 +14,8 @@ function checkStartRequest() {
 // 返信データの処理
 function receiveStartResponse() {
     var response = JSON.parse(xmlHttpRequest.responseText);
-    myName = response.playerName;
+    myName = response.userName;
+    console.log(myName);
     if (!myName) {
         alert("プレイヤー名を入力してからアクセスしてください");
         location.replace('index.html');
@@ -22,27 +23,27 @@ function receiveStartResponse() {
     sendToStartWebSocket(myName);
 }
 
-function sendToStartWebSocket(playerName) {
+function sendToStartWebSocket(userName) {
     ws = new WebSocket('ws://'+ LOCATION +'/project/drawwordchain/startbroadcast');
     ws.onopen = function() {
-        ws.send(playerName);
+        ws.send(userName);
     };
 
     ws.onmessage = function(receive) {
-        var playerList = (receive.data).split(",");
+        var userList = (receive.data).split(",");
 
-        var playerAreaElement =  document.getElementById("player_area");
+        var userAreaElement =  document.getElementById("user_area");
 
         // データの削除
-        while (playerAreaElement.lastChild) {
-            playerAreaElement.removeChild(playerAreaElement.lastChild);
+        while (userAreaElement.lastChild) {
+            userAreaElement.removeChild(userAreaElement.lastChild);
         }
 
         // プレイヤーの挿入
-        playerList.forEach(function(player) {
-            var playerElement = document.createElement("div");
-            playerAreaElement.appendChild(playerElement);
-            playerElement.innerHTML = player;
+        userList.forEach(function(user) {
+            var userElement = document.createElement("div");
+            userAreaElement.appendChild(userElement);
+            userElement.innerHTML = user;
         });
 	};
 }
@@ -80,8 +81,8 @@ window.addEventListener("load", function() {
         }
 
         //プレイヤー名の中に絵のタイトルを表示(一時的なもの)
-        var playerName = document.getElementById("player_name");
-        playerName.innerHTML= document.getElementById("word").value;
+        var userName = document.getElementById("user_name");
+        userName.innerHTML= document.getElementById("word").value;
 
 
         // 画像->base64データに変換
@@ -117,21 +118,21 @@ window.addEventListener("beforeunload", function() {
 }, false);
 
 ////以下メモ用
-// var playerAreaElement = document.getElementById("player_area");
+// var userAreaElement = document.getElementById("user_area");
 //
-// while (playerAreaElement.lastChild) {
-//     playerAreaElement.removeChild(playerAreaElement.lastChild);
+// while (userAreaElement.lastChild) {
+//     userAreaElement.removeChild(userAreaElement.lastChild);
 // }
 //
-// var playerElement = document.createElement("span");
-// playerAreaElement.appendChild(playerElement);
-// playerElement.innerHTML = response.playerName;
-// playerAreaElement.appendChild(document.createElement("br"));
+// var userElement = document.createElement("span");
+// userAreaElement.appendChild(userElement);
+// userElement.innerHTML = response.userName;
+// userAreaElement.appendChild(document.createElement("br"));
 
-// playerListを返した場合の処理
-// for (var i = 0; i < response.playerList.length; i++) {
-//     var playerElement = document.createElement("span");
-//     playerAreaElement.appendChild(playerElement);
-//     playerElement.innerHTML = "player" + (i + 1) + ":" + response.playerList[i];
-//     playerAreaElement.appendChild(document.createElement("br"));
+// userListを返した場合の処理
+// for (var i = 0; i < response.userList.length; i++) {
+//     var userElement = document.createElement("span");
+//     userAreaElement.appendChild(userElement);
+//     userElement.innerHTML = "user" + (i + 1) + ":" + response.userList[i];
+//     userAreaElement.appendChild(document.createElement("br"));
 // }
