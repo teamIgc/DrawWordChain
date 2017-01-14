@@ -120,9 +120,7 @@ window.addEventListener("load", function() {
             img.width = 250;
             img.height = 250;
             document.getElementById('pict_display').appendChild(img);
-            //---------------あとで消す----------------------------
-            // document.getElementById('pict_display').appendChild(drawTitle);
-            //----------------------------------------------------
+            
 
             //がめんクリア
             ctx.beginPath();
