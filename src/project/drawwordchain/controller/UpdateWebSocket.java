@@ -22,6 +22,7 @@ public class UpdateWebSocket extends StartWebSocket {
     @OnOpen
     public void connect(Session session) {
         String FirstChar = (new FirstChar() ).getChar();
+
     }
 
     @OnClose
@@ -48,19 +49,11 @@ public class UpdateWebSocket extends StartWebSocket {
         userNameBroadcast();
     }
 
-    public void userNameBroadcast() {
-        System.out.println("全プレイヤーにプレイヤー名を返却");
-        String userNameColumn = "";
-        Iterator<WebSocketUser> iterator = userList.iterator();
-        while(iterator.hasNext()){
-            userNameColumn += iterator.next().getName();
-            if(iterator.hasNext()) {
-                userNameColumn += ",";
-            }
-        }
-        System.out.println("送信データ:" + userNameColumn);
+    public void firstCharBroadcast() {
+        System.out.println("全プレイヤーに最初の文字を返却");
+        String firstChar = (new FirstChar() ).getChar();
         for ( Session s : sessions ) {
-            s.getAsyncRemote().sendText(userNameColumn);
+            s.getAsyncRemote().sendText();
         }
     }
 }
