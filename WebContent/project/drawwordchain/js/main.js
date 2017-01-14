@@ -69,21 +69,27 @@ window.addEventListener("load", function() {
 	// 送信ボタンのEventListener
 	document.getElementById("send_button").addEventListener("click", function() {
         //絵のタイトル未入力の際の動作
-        if(!document.getElementById("word").value){
+        var drawWord = document.getElementById("word");
+        if(!drawWord.value){
              alert("絵の名前を入力してください");
              return;
         }
         //textformに日本語のみが入力されているかの判定
-        for(var i=0;i<document.getElementById("word").value.length;i++){
-          if(!(document.getElementById("word").value.match(/^[\u3040-\u309F]+$/))){
+        // for(var i=0;i<drawWord.value.length;i++){
+          if(!(drawWord.value.match(/^[\u3040-\u309F]+$/))){
             alert("平仮名のみで入力してください");
             return;
           }
-        }
+          var lastWord = drawWord.value.slice(-1);
+          if(lastWord.match(/ん/)){
+            alert("勝手にしりとりを終わらせないでください");
+            return;
+          }
+        // }
 
         //プレイヤー名の中に絵のタイトルを表示(一時的なもの)
         var userName = document.getElementById("user_name");
-        userName.innerHTML= document.getElementById("word").value;
+        userName.innerHTML= drawWord.value;
 
 
         // 画像->base64データに変換
