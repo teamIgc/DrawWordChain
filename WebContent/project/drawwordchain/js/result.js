@@ -57,16 +57,16 @@ window.addEventListener("load", function() {
   xmlHttpRequest.onreadystatechange = checkReadyState;
   xmlHttpRequest.open("GET", url, true);
   xmlHttpRequest.send(null);
-}
+}, false);
 
 // 返信データの処理 66 or 68行目 Jsonのオブジェクト化をparseかevalの違い
 function receiveResponse() {
-//  var response = JSON.stringify(json_data2); //おそらく不要
-// response = JSON.parse(xmlHttpRequest.responseText);
-//  response = JSON.parse(response);//Jsonをjavascriptのオブジェクトに変換
-  var response = eval("(" + xmlHttpRequest.responseText + ")");
+  var response = JSON.stringify(json_data2); //おそらく不要
+  response = JSON.parse(response);//Jsonをjavascriptのオブジェクトに変換
+  // response = JSON.parse(xmlHttpRequest.responseText);
+  // var response = eval("(" + xmlHttpRequest.responseText + ")");
   for(var i=0; i<response.statement.length; i++){
-    CreateText(response.statement[i].name,response.statement[i].word);
+    CreateText(response.statement[i].name,response.statement[i].word);//描いた人の名前とイラスト名表示
     Base64ToImage(response.statement[i].data);//画像表示
     if(i != response.statement.length-1){
       JudgeToImage(response.judge[i]);//正誤判定
@@ -78,7 +78,8 @@ function receiveResponse() {
 function Base64ToImage(base64img) {
     var img = new Image();
     img.src = base64img;
-    document.getElementById('gamediv').appendChild(img);
+    var show = document.getElementById('gamediv');
+    show.appendChild(img);
 }
 
 //正誤判定の画像挿入
@@ -91,6 +92,7 @@ function JudgeToImage(hantei){
     o.src = "img/batu.png";
   }
   document.getElementById("gamediv").appendChild(o);
+  document.getElementById("gamediv").appendChild( document.createElement( 'br' ) );
 }
 
 //描いた人の名前とイラスト名表示
