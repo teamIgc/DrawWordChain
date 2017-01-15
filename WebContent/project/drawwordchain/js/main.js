@@ -110,8 +110,10 @@ window.addEventListener("load", function() {
             document.getElementById('pict_display').appendChild(arrow);
 
             // 4行目:myName==playerNameを照合して一致したらプレイヤー名の色を替える処理に変更させる
-            element.appendChild(document.createTextNode(playerName));
-            document.getElementById("pict_display").appendChild(element);
+            // 開始ボタンを無効にする
+            
+            // element.appendChild(document.createTextNode(playerName));
+            // document.getElementById("pict_display").appendChild(element);
         };
     }, false);
 

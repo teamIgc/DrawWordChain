@@ -28,7 +28,7 @@ public class UpdateWebSocket {
     // 各jsでWebSocketをNewしているため，staticにしないと共有できない？
     private static final List<WebSocketUser> userList = new ArrayList<WebSocketUser>();
 
-    private static boolean userListFlag = false;
+    private static boolean userListFlag = true;
 
     @OnOpen
     public void connect(Session session) {
@@ -103,7 +103,7 @@ public class UpdateWebSocket {
                 wUser.setName(info.userList[i]);
                 userList.add(wUser);
             }
-            userListFlag = true;
+            userListFlag = false;
         }
 
         // userListの中にある名前と一致した名前のセッションを登録
@@ -112,5 +112,8 @@ public class UpdateWebSocket {
                 userList.get(i).setSessionId(session.getId());
             }
         }
+        sessions.add(session);
+        System.out.println("セッションのsize"+sessions.size());
+        System.out.println("UserListのsize"+userList.size());
     }
 }
