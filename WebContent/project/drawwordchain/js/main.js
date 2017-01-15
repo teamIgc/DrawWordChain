@@ -2,6 +2,7 @@ var xmlHttpRequest;
 var startws;
 var updatews;
 var myName;
+var userList;
 var LOCATION = "localhost:8080/isp2";
 // "ecl.info.kindai.ac.jp/16/isp2/warup/servlet/B17";
 // "localhost:8080/isp2";
@@ -32,7 +33,7 @@ function sendToStartWebSocket(userName) {
     };
 
     startws.onmessage = function(receive) {
-        var userList = (receive.data).split(",");
+        userList = (receive.data).split(",");
         console.log("startwsのonmessage");
         var userAreaElement = document.getElementById("user_area");
 
@@ -69,7 +70,18 @@ window.addEventListener("load", function() {
         updatews = new WebSocket('ws://' + LOCATION + '/project/drawwordchain/updatebroadcast');
 
         updatews.onopen = function() {
-            var json = "{\"playerName\": \""+myName+"\",\"imgName\": \"\",\"img\": \"\"}";
+            // userListJson = a", "b", "c"
+            var userListJson = "";
+
+            for(var i = 0; i < userList.length; i++) {
+                userListJson += "\""+userList[i]+"\"";
+                if (i == userList.length - 1) {
+                } else {
+                    userListJson += ",";
+                }
+            }
+
+            var json = "{\"playerName\": \""+myName+"\",\"userList\":["+userListJson+"],\"imgName\": \"\",\"img\": \"\"}";
             updatews.send(json);
         };
 
@@ -86,7 +98,7 @@ window.addEventListener("load", function() {
             element.style.cssText="font-size:100pt;"+"display:table-cell;"+"vertical-align:middle;";
             element.appendChild(document.createTextNode(firstChar+"→"));
             document.getElementById("pict_display").appendChild(element);
-            //一時的にプレイヤーネームも表示するようにしてるbyまつうら
+            // 4行目:myName==playerNameを照合して一致したらプレイヤー名の色を替える処理に変更させる
             element.appendChild(document.createTextNode(playerName));
             document.getElementById("pict_display").appendChild(element);
         };
