@@ -34,7 +34,7 @@ function sendToStartWebSocket(userName) {
     startws.onmessage = function(receive) {
         var userList = (receive.data).split(",");
         console.log("startwsのonmessage");
-        var userAreaElement = document.getElementById("user_area");
+        var userAreaElement = document.getElementById("user_name");
 
         // データの削除
         while (userAreaElement.lastChild) {
@@ -44,8 +44,10 @@ function sendToStartWebSocket(userName) {
         // プレイヤーの挿入
         userList.forEach(function(user) {
             var userElement = document.createElement("div");
+            userElement.appendChild(document.createTextNode(user));
             userAreaElement.appendChild(userElement);
-            userElement.innerHTML = user;
+            // userAreaElement.appendChild(userElement);
+            // userElement.innerHTML = user;
         });
     };
 }
@@ -115,12 +117,12 @@ window.addEventListener("load", function() {
 
         //プレイヤー名の中に絵のタイトルを表示(一時的なもの)
         var userName = document.getElementById("user_name");
-        //---------------あとで消す----------------------------
-        var drawTitle = document.createElement('div');
-        var text = document.createTextNode(drawWord.value+"→");
-        drawTitle.appendChild(text);
-        userName.appendChild(drawTitle);
-        //----------------------------------------------------
+        // //---------------あとで消す----------------------------
+        // var drawTitle = document.createElement('div');
+        // var text = document.createTextNode(drawWord.value+"→");
+        // drawTitle.appendChild(text);
+        // userName.appendChild(drawTitle);
+        // //----------------------------------------------------
 
         // 画像->base64データに変換
         var data = canvas.toDataURL("image/jpeg");
