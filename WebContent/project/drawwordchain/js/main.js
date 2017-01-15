@@ -66,7 +66,10 @@ window.addEventListener("load", function() {
     document.getElementById("start_button").addEventListener("click", function () {
         updatews = new WebSocket('ws://' + LOCATION + '/project/drawwordchain/updatebroadcast');
 
-        updatews.onopen = function() {};
+        updatews.onopen = function() {
+            var json = "{\"playerName\": \""+myName+"\",\"imgName\": \"\",\"img\": \"\"}";
+            updatews.send();
+        };
 
         updatews.onmessage = function(receive) {
             console.log("updatewsのonmessage");

@@ -2,6 +2,8 @@ package project.drawwordchain.controller;
 
 import java.io.IOException;
 
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
@@ -13,6 +15,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import project.drawwordchain.model.FirstChar;
+import project.drawwordchain.model.WebSocketUser;
 
 @ServerEndpoint("/project/drawwordchain/updatebroadcast")
 public class UpdateWebSocket {
