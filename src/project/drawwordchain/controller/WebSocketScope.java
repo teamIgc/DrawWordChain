@@ -23,5 +23,5 @@ public class WebSocketScope {
     // 各jsでWebSocketをNewしているため，staticにしないと共有できない？
     protected static final List<WebSocketUser> userList = new ArrayList<WebSocketUser>();
 
-    // StartとUpdateのSessionを入れ替えるメソッド
+    // StartとUpdateのSessionをuserListのセッションIDをを使って入れ替えるメソッド
 }

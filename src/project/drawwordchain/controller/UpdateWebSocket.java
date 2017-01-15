@@ -37,6 +37,7 @@ public class UpdateWebSocket extends WebSocketScope {
 
         String json = builder.toString();
         System.out.println("jsonデータ: "+json);
+        System.out.println("いま使用しているsessionID : " + session.getId());
         messageBroadcast(json);
     }
 
@@ -53,6 +54,7 @@ public class UpdateWebSocket extends WebSocketScope {
     public void messageBroadcast(String message) {
         System.out.println("全プレイヤーにmessageを返却");
         for ( Session s : sessions ) {
+            System.out.println("保存しているID " + s.getId());
             s.getAsyncRemote().sendText(message);
         }
     }
