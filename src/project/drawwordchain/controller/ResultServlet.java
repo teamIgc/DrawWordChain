@@ -38,13 +38,30 @@ public class ResultServlet extends ActionServlet {
         List<Boolean> judgeList = new ArrayList<Boolean>();
 
 		DataManager data = new DataManager ();//DataManager作る
-        List<Statement> sList = data.getStatementList();// 各判定を格納
 
+
+		    	data.setStatement("111","あいう","333");
+		    	data.setStatement("444","うかさ","666");
+		    	data.setStatement("777","すうわ","999");
+
+		    	List<Statement> sList = DataManager.getStatementList();
+		    	System.out.println(sList.size());
+		        for ( int i = 0; i < sList.size(); i++ ) {
+		        	System.out.println("ユーザー名" + sList.get(i).getUser());
+		        	System.out.println("イラスト名" + sList.get(i).getWord());
+		        	System.out.println("イラストData" + sList.get(i).getImageData());
+		        }
+
+
+        //List<Statement> sList = data.getStatementList();// 各判定を格納
+
+				System.out.println("リストのサイズ" + sList.size());
         // 最初の文字を決めるメソッド
 		CheckWord cS = new CheckWord();
         for ( int i = 0; i < sList.size()-1; i++ ) {
             String word = sList.get(i).getWord();
-            String nextWord = sList.get(++i).getWord();
+            String nextWord = sList.get(i+1).getWord();
+						System.out.println(cS.checkWord(word,nextWord));//テスト用
             judgeList.add(cS.checkWord(word,nextWord));
         }
 
