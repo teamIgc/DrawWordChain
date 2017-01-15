@@ -17,7 +17,11 @@ import javax.websocket.server.ServerEndpoint;
 import project.drawwordchain.model.WebSocketUser;
 
 @ServerEndpoint("/project/drawwordchain/startbroadcast")
-public class StartWebSocket extends WebSocketScope {
+public class StartWebSocket {
+
+    private static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
+
+    private static final List<WebSocketUser> userList = new ArrayList<WebSocketUser>();
 
     @OnOpen
     public void connect(Session session) {

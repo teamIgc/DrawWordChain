@@ -15,7 +15,12 @@ import javax.websocket.server.ServerEndpoint;
 import project.drawwordchain.model.FirstChar;
 
 @ServerEndpoint("/project/drawwordchain/updatebroadcast")
-public class UpdateWebSocket extends WebSocketScope {
+public class UpdateWebSocket {
+
+    private static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
+
+    // 各jsでWebSocketをNewしているため，staticにしないと共有できない？
+    private static final List<WebSocketUser> userList = new ArrayList<WebSocketUser>();
 
     @OnOpen
     public void connect(Session session) {
