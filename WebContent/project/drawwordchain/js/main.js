@@ -35,7 +35,7 @@ function sendToStartWebSocket(userName) {
     startws.onmessage = function(receive) {
         userList = (receive.data).split(",");
         console.log("startwsのonmessage");
-        var userAreaElement = document.getElementById("user_area");
+        var userAreaElement = document.getElementById("user_name");
 
         // データの削除
         while (userAreaElement.lastChild) {
@@ -45,8 +45,10 @@ function sendToStartWebSocket(userName) {
         // プレイヤーの挿入
         userList.forEach(function(user) {
             var userElement = document.createElement("div");
+            userElement.appendChild(document.createTextNode(user));
             userAreaElement.appendChild(userElement);
-            userElement.innerHTML = user;
+            // userAreaElement.appendChild(userElement);
+            // userElement.innerHTML = user;
         });
     };
 }
@@ -94,10 +96,19 @@ window.addEventListener("load", function() {
             var firstChar = response.firstChar;
             var playerName = response.playerName;
 
+            //初めの文字を表示
             var element = document.createElement('p');
             element.style.cssText="font-size:100pt;"+"display:table-cell;"+"vertical-align:middle;";
-            element.appendChild(document.createTextNode(firstChar+"→"));
+            element.appendChild(document.createTextNode("「"+firstChar+"」"));
             document.getElementById("pict_display").appendChild(element);
+
+            //矢印を表示
+            var arrow = document.createElement('p');
+            arrow.style.cssText="display:table-cell;"+"vertical-align:middle;"+"font-size:100px;"+"color:white;";
+            var arrowText = document.createTextNode("→");
+            arrow.appendChild(arrowText);
+            document.getElementById('pict_display').appendChild(arrow);
+
             // 4行目:myName==playerNameを照合して一致したらプレイヤー名の色を替える処理に変更させる
             element.appendChild(document.createTextNode(playerName));
             document.getElementById("pict_display").appendChild(element);
@@ -127,12 +138,12 @@ window.addEventListener("load", function() {
 
         //プレイヤー名の中に絵のタイトルを表示(一時的なもの)
         var userName = document.getElementById("user_name");
-        //---------------あとで消す----------------------------
-        var drawTitle = document.createElement('div');
-        var text = document.createTextNode(drawWord.value+"→");
-        drawTitle.appendChild(text);
-        userName.appendChild(drawTitle);
-        //----------------------------------------------------
+        // //---------------あとで消す----------------------------
+        // var drawTitle = document.createElement('div');
+        // var text = document.createTextNode(drawWord.value+"→");
+        // drawTitle.appendChild(text);
+        // userName.appendChild(drawTitle);
+        // //----------------------------------------------------
 
         // 画像->base64データに変換
         var data = canvas.toDataURL("image/jpeg");
@@ -144,9 +155,15 @@ window.addEventListener("load", function() {
         img.height = 250;
 
         var newImg = document.createElement('p');
-        newImg.style.cssText="display:table-cell;"+"vertical-align:middle;";
+        newImg.style.cssText="display:table-cell;"+"vertical-align:middle;"+"border: 1px solid black;";
         newImg.appendChild(img);
         document.getElementById('pict_display').appendChild(newImg);
+        //画像と画像の間に矢印
+        var arrow = document.createElement('p');
+        arrow.style.cssText="display:table-cell;"+"vertical-align:middle;"+"font-size:100px;"+"color:white;";
+        var arrowText = document.createTextNode("→");
+        arrow.appendChild(arrowText);
+        document.getElementById('pict_display').appendChild(arrow);
 
 
         //がめんクリア
