@@ -42,7 +42,7 @@ public class ResultServlet extends ActionServlet {
 
         // 最初の文字を決めるメソッド
 		CheckWord cS = new CheckWord();
-        for ( int i = 0; i < sList.size(); i++ ) {
+        for ( int i = 0; i < sList.size()-1; i++ ) {
             String word = sList.get(i).getWord();
             String nextWord = sList.get(++i).getWord();
             judgeList.add(cS.checkWord(word,nextWord));
