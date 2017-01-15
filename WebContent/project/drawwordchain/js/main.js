@@ -84,10 +84,19 @@ window.addEventListener("load", function() {
             var firstChar = response.firstChar;
             var playerName = response.playerName;
 
+            //初めの文字を表示
             var element = document.createElement('p');
             element.style.cssText="font-size:100pt;"+"display:table-cell;"+"vertical-align:middle;";
-            element.appendChild(document.createTextNode(firstChar+"→"));
+            element.appendChild(document.createTextNode("「"+firstChar+"」"));
             document.getElementById("pict_display").appendChild(element);
+            //矢印を表示
+            var arrow = document.createElement('p');
+            arrow.style.cssText="display:table-cell;"+"vertical-align:middle;"+"font-size:100px;"+"color:white;";
+            var arrowText = document.createTextNode("→");
+            arrow.appendChild(arrowText);
+            document.getElementById('pict_display').appendChild(arrow);
+
+
             //一時的にプレイヤーネームも表示するようにしてるbyまつうら
             element.appendChild(document.createTextNode(playerName));
             document.getElementById("pict_display").appendChild(element);
@@ -134,9 +143,15 @@ window.addEventListener("load", function() {
         img.height = 250;
 
         var newImg = document.createElement('p');
-        newImg.style.cssText="display:table-cell;"+"vertical-align:middle;";
+        newImg.style.cssText="display:table-cell;"+"vertical-align:middle;"+"border: 1px solid black;";
         newImg.appendChild(img);
         document.getElementById('pict_display').appendChild(newImg);
+        //画像と画像の間に矢印
+        var arrow = document.createElement('p');
+        arrow.style.cssText="display:table-cell;"+"vertical-align:middle;"+"font-size:100px;"+"color:white;";
+        var arrowText = document.createTextNode("→");
+        arrow.appendChild(arrowText);
+        document.getElementById('pict_display').appendChild(arrow);
 
 
         //がめんクリア
