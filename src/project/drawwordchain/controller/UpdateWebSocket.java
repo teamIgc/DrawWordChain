@@ -16,6 +16,9 @@ import javax.websocket.server.ServerEndpoint;
 
 import project.drawwordchain.model.FirstChar;
 import project.drawwordchain.model.WebSocketUser;
+import project.drawwordchain.model.Info;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ServerEndpoint("/project/drawwordchain/updatebroadcast")
 public class UpdateWebSocket {
@@ -27,6 +30,26 @@ public class UpdateWebSocket {
 
     @OnOpen
     public void connect(Session session) {
+        String json = "{\"name\":\"Nobunaga\", \"email\":\"nobunaga@gmail.com\"}";
+        try {
+
+            ObjectMapper mapper = new ObjectMapper();
+            Info info = mapper.readValue(json, Info.class);
+            System.out.println(info.name);
+        } catch(IOException e) {
+            System.err.println(e.getMessage());
+        }
+
+    }
+
+    @OnClose
+    public void onClose(Session session) {
+        System.out.println("close : " + session.getId());
+    }
+
+    @OnMessage
+    public void onMessage(String userName, Session session) {
+
         System.out.println("open : " + session.getId());
         String firstChar = (new FirstChar() ).getChar();
 
@@ -47,16 +70,6 @@ public class UpdateWebSocket {
         System.out.println("jsonデータ: "+json);
         System.out.println("いま使用しているsessionID : " + session.getId());
         messageBroadcast(json);
-    }
-
-    @OnClose
-    public void onClose(Session session) {
-        System.out.println("close : " + session.getId());
-    }
-
-    @OnMessage
-    public void echoUserName(String userName, Session session) {
-        System.out.println("メッセージの確認");
     }
 
     public void messageBroadcast(String message) {
