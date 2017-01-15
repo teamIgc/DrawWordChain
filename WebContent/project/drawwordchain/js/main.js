@@ -66,10 +66,7 @@ window.addEventListener("load", function() {
     document.getElementById("start_button").addEventListener("click", function () {
         updatews = new WebSocket('ws://' + LOCATION + '/project/drawwordchain/updatebroadcast');
 
-        updatews.onopen = function() {
-            var json = "{\"playerName\": \""+myName+"\",\"imgName\": \"\",\"img\": \"\"}";
-            updatews.send();
-        };
+        updatews.onopen = function() {};
 
         updatews.onmessage = function(receive) {
             console.log("updatewsのonmessage");
@@ -80,9 +77,10 @@ window.addEventListener("load", function() {
             var playerName = response.playerName;
 
             var element = document.createElement('p');
-            element.appendChild(document.createTextNode(firstChar));
+            element.style.cssText="font-size:100pt;"+"display:table-cell;"+"vertical-align:middle;";
+            element.appendChild(document.createTextNode(firstChar+"→"));
             document.getElementById("pict_display").appendChild(element);
-
+            //一時的にプレイヤーネームも表示するようにしてるbyまつうら
             element.appendChild(document.createTextNode(playerName));
             document.getElementById("pict_display").appendChild(element);
         };
@@ -113,7 +111,7 @@ window.addEventListener("load", function() {
         var userName = document.getElementById("user_name");
         //---------------あとで消す----------------------------
         var drawTitle = document.createElement('div');
-        var text = document.createTextNode(drawWord.value);
+        var text = document.createTextNode(drawWord.value+"→");
         drawTitle.appendChild(text);
         userName.appendChild(drawTitle);
         //----------------------------------------------------
@@ -126,7 +124,11 @@ window.addEventListener("load", function() {
         img.src = data;
         img.width = 250;
         img.height = 250;
-        document.getElementById('pict_display').appendChild(img);
+
+        var newImg = document.createElement('p');
+        newImg.style.cssText="display:table-cell;"+"vertical-align:middle;";
+        newImg.appendChild(img);
+        document.getElementById('pict_display').appendChild(newImg);
 
 
         //がめんクリア
