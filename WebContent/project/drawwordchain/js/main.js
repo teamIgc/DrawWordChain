@@ -73,6 +73,7 @@ window.addEventListener("load", function() {
             updatews.send(json);
         };
 
+
         updatews.onmessage = function(receive) {
             console.log("updatewsのonmessage");
             // receive.data = {"playerName" : "Name", "firstChar" : "文字"}
@@ -82,9 +83,10 @@ window.addEventListener("load", function() {
             var playerName = response.playerName;
 
             var element = document.createElement('p');
-            element.appendChild(document.createTextNode(firstChar));
+            element.style.cssText="font-size:100pt;"+"display:table-cell;"+"vertical-align:middle;";
+            element.appendChild(document.createTextNode(firstChar+"→"));
             document.getElementById("pict_display").appendChild(element);
-
+            //一時的にプレイヤーネームも表示するようにしてるbyまつうら
             element.appendChild(document.createTextNode(playerName));
             document.getElementById("pict_display").appendChild(element);
         };
@@ -115,7 +117,7 @@ window.addEventListener("load", function() {
         var userName = document.getElementById("user_name");
         //---------------あとで消す----------------------------
         var drawTitle = document.createElement('div');
-        var text = document.createTextNode(drawWord.value);
+        var text = document.createTextNode(drawWord.value+"→");
         drawTitle.appendChild(text);
         userName.appendChild(drawTitle);
         //----------------------------------------------------
@@ -128,7 +130,11 @@ window.addEventListener("load", function() {
         img.src = data;
         img.width = 250;
         img.height = 250;
-        document.getElementById('pict_display').appendChild(img);
+
+        var newImg = document.createElement('p');
+        newImg.style.cssText="display:table-cell;"+"vertical-align:middle;";
+        newImg.appendChild(img);
+        document.getElementById('pict_display').appendChild(newImg);
 
 
         //がめんクリア
