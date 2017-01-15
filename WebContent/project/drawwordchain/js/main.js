@@ -3,7 +3,9 @@ var startws;
 var updatews;
 var myName;
 var LOCATION = "localhost:8080/isp2";
-//School: LOCATION = "ecl.info.kindai.ac.jp/16/isp2/warup/servlet/B17/";
+// "ecl.info.kindai.ac.jp/16/isp2/warup/servlet/B17";
+// "localhost:8080/isp2";
+// School:
 
 function checkStartRequest() {
     // 開始ボタンのレスポンス処理部分
@@ -17,7 +19,7 @@ function receiveStartResponse() {
     var response = JSON.parse(xmlHttpRequest.responseText);
     myName = response.userName;
     if (!myName) {
-        alert("プレイヤー名を入力してからアクセスしてください");
+        // alert("プレイヤー名を入力してからアクセスしてください");
         location.replace('index.html');
     }
     sendToStartWebSocket(myName);
@@ -68,7 +70,7 @@ window.addEventListener("load", function() {
 
         updatews.onopen = function() {
             var json = "{\"playerName\": \""+myName+"\",\"imgName\": \"\",\"img\": \"\"}";
-            updatews.send();
+            updatews.send(json);
         };
 
         updatews.onmessage = function(receive) {
