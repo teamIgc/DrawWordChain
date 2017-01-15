@@ -99,7 +99,7 @@ window.addEventListener("load", function() {
             //初めの文字を表示
             var element = document.createElement('p');
             element.style.cssText="font-size:100pt;"+"display:table-cell;"+"vertical-align:middle;";
-            element.appendChild(document.createTextNode("「"+firstChar+"」"));
+            element.appendChild(document.createTextNode("["+firstChar+"]"));
             document.getElementById("pict_display").appendChild(element);
 
             //矢印を表示
@@ -111,7 +111,7 @@ window.addEventListener("load", function() {
 
             // 4行目:myName==playerNameを照合して一致したらプレイヤー名の色を替える処理に変更させる
             // 開始ボタンを無効にする
-            
+
             // element.appendChild(document.createTextNode(playerName));
             // document.getElementById("pict_display").appendChild(element);
         };
