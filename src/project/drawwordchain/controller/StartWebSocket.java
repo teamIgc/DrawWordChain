@@ -17,12 +17,7 @@ import javax.websocket.server.ServerEndpoint;
 import project.drawwordchain.model.WebSocketUser;
 
 @ServerEndpoint("/project/drawwordchain/startbroadcast")
-public class StartWebSocket {
-
-    protected static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
-
-    // 各jsでWebSocketをNewしているため，staticにしないと共有できない？
-    protected static final List<WebSocketUser> userList = new ArrayList<WebSocketUser>();
+public class StartWebSocket extends WebSocketScope {
 
     @OnOpen
     public void connect(Session session) {

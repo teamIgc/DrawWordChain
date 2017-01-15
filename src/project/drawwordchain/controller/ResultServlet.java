@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 // import project.drawwordchain.model.Drawing;
 import project.drawwordchain.model.CheckWord;
 import project.drawwordchain.model.ResultJson;
-// import project.drawwordchain.model.Statement;
+import project.drawwordchain.model.Statement;
 // import project.drawwordchain.model.User;
 import project.drawwordchain.model.DataManager;
 
@@ -37,7 +37,7 @@ public class ResultServlet extends ActionServlet {
         // 文字判定
         List<Boolean> judgeList = new ArrayList<Boolean>();
 
-				DataManager data = new DataManager ();//DataManager作る
+		DataManager data = new DataManager ();//DataManager作る
         List<Statement> sList = data.getStatementList();// 各判定を格納
 
         // 最初の文字を決めるメソッド
