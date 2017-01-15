@@ -24,6 +24,7 @@ public class ResultJson{
     for(Statement statement : statementList){
       builder.append("{");
       builder.append("\"name\":\"").append(statement.getUser()).append("\",");
+      builder.append("\"word\":\"").append(statement.getWord()).append("\",");
       builder.append("\"data\":\"").append(statement.getImageData()).append("\"");
       builder.append("}");
       //最後のみ,を省く

@@ -79,10 +79,10 @@ public class ResultServlet extends ActionServlet {
 		writer.flush();
 
         // DrawingをapplicationScopeから削除
-        context.removeAttribute("drawing");
+      //context.removeAttribute("drawing");
 
 		// userをSessionScopeから削除
-		request.getSession().removeAttribute("user");
+		//request.getSession().removeAttribute("user");
 	}
 
 }

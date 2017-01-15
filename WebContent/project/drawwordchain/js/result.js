@@ -45,7 +45,7 @@ function JsonParse(text){
 
 //サーバからのデータ受信の状態をチェック
 function checkReadyState(){
-  if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+  if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){
     receiveResponse();//返信データの処理
   }
 }
