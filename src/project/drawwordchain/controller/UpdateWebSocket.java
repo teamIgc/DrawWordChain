@@ -28,17 +28,10 @@ public class UpdateWebSocket {
     // 各jsでWebSocketをNewしているため，staticにしないと共有できない？
     private static final List<WebSocketUser> userList = new ArrayList<WebSocketUser>();
 
+    private static boolean userListFlag = false;
+
     @OnOpen
     public void connect(Session session) {
-        String json = "{\"name\":\"Nobunaga\", \"email\":\"nobunaga@gmail.com\"}";
-        try {
-
-            ObjectMapper mapper = new ObjectMapper();
-            Info info = mapper.readValue(json, Info.class);
-            System.out.println(info.name);
-        } catch(IOException e) {
-            System.err.println(e.getMessage());
-        }
 
     }
 
@@ -47,36 +40,77 @@ public class UpdateWebSocket {
         System.out.println("close : " + session.getId());
     }
 
+    // json = {"playerName":"myName","imgName":"","img":""}
     @OnMessage
-    public void onMessage(String userName, Session session) {
+    public void onMessage(String json, Session session) {
 
-        System.out.println("open : " + session.getId());
-        String firstChar = (new FirstChar() ).getChar();
+        // jsonデータの取り出し
+        Info info = new Info();
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            info = mapper.readValue(json, Info.class);
+            System.out.println(info.playerName);
+        } catch(IOException e) {
+            System.err.println(e.getMessage());
+        }
 
-        // Jsonの作成
-        // {"playerName" : "Name", "firstChar" : "文字"}
-        StringBuilder builder = new StringBuilder();
-        builder.append('{');
-        builder.append('\"').append("playerName").append('\"');
-        builder.append(':');
-        builder.append('\"').append(userList.get(0).getName()).append('\"');
-        builder.append(',');
-        builder.append('\"').append("firstChar").append('\"');
-        builder.append(':');
-        builder.append('\"').append(firstChar).append('\"');
-        builder.append('}');
+        // playerName,userListのとき
+        if(info.imgName.length() == 0) {
 
-        String json = builder.toString();
-        System.out.println("jsonデータ: "+json);
-        System.out.println("いま使用しているsessionID : " + session.getId());
-        messageBroadcast(json);
+            // 送られてきたuserListを自クラスのuserListに挿入
+            // sessionをuserNameに合わせて挿入
+            setUserInfo(info, session);
+
+            String firstChar = (new FirstChar()).getChar();
+            // Jsonの作成
+            // {"playerName" : "Name", "firstChar" : "文字"}
+            StringBuilder builder = new StringBuilder();
+            builder.append('{');
+            builder.append('\"').append("playerName").append('\"');
+            builder.append(':');
+            // wUserにはsessionがあるので，wUser自体を削除することはできない->取得条件(終わった人は名前を空文字にするなど)をここで判断する必要がある
+            builder.append('\"').append(userList.get(0).getName()).append('\"');
+            builder.append(',');
+            builder.append('\"').append("firstChar").append('\"');
+            builder.append(':');
+            builder.append('\"').append(firstChar).append('\"');
+            builder.append('}');
+
+            String sendJson = builder.toString();
+            System.out.println("jsonデータ: "+sendJson);
+            messageBroadcast(sendJson);
+        // playerName,img,imgNameのとき
+        } else {
+
+        }
+
     }
+
 
     public void messageBroadcast(String message) {
         System.out.println("全プレイヤーにmessageを返却");
         for ( Session s : sessions ) {
             System.out.println("保存しているID " + s.getId());
             s.getAsyncRemote().sendText(message);
+        }
+    }
+
+    private void setUserInfo(Info info, Session session) {
+        // 送られてきたuserListを保存
+        if (userListFlag) {
+            for (int i = 0; i < info.userList.length; i++) {
+                WebSocketUser wUser = new WebSocketUser();
+                wUser.setName(info.userList[i]);
+                userList.add(wUser);
+            }
+            userListFlag = true;
+        }
+
+        // userListの中にある名前と一致した名前のセッションを登録
+        for (int i = 0; i < userList.size(); i++) {
+            if(userList.get(i).getName() == info.playerName) {
+                userList.get(i).setSessionId(session.getId());
+            }
         }
     }
 }
