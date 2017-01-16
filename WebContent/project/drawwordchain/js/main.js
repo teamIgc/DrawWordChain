@@ -189,13 +189,6 @@ window.addEventListener("load", function() {
         ctx.globalAlpha = 1.0;
         ctx.fillRect(0, 0, 500, 500);
 
-        //
-        // var image = new Image();
-        // image.src = data;
-        // image.onload = function() {
-        //   ctx2.drawImage(image, 0, 0);
-        // }
-
         // 画像送信の記述なし
     }, false);
 
