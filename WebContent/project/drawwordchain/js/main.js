@@ -179,7 +179,7 @@ function sendToUpdateWebSocket() {
         // 4行目:myName==playerNameを照合して一致したらプレイヤー名の色を替える処理に変更させる
         // 開始ボタンを無効にする
         // playerFlagをtrueにする．
-
+        document.getElementById('now_draw_user').innerHTML(playerName);
         // element.appendChild(document.createTextNode(playerName));
         // document.getElementById("pict_display").appendChild(element);
     };
