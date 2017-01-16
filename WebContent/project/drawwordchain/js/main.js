@@ -29,7 +29,7 @@ window.addEventListener("load", function() {
             alert("絵の名前を入力してください");
             return;
         }
-        
+
         // textformに日本語のみが入力されているかの判定
         if (!(drawWord.value.match(/^[\u3040-\u309F]+$/)) && !drawWord.value.match(/ー/)) {
             alert("平仮名のみで入力してください");
