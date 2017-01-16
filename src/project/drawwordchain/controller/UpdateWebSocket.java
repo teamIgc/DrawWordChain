@@ -16,6 +16,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import project.drawwordchain.model.FirstChar;
 import project.drawwordchain.model.WebSocketUser;
+import project.drawwordchain.model.DataManager;
 import project.drawwordchain.model.Info;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,7 +33,7 @@ public class UpdateWebSocket {
 
     @OnOpen
     public void connect(Session session) {
-
+        sessions.add(session);
     }
 
     @OnClose
@@ -40,7 +41,7 @@ public class UpdateWebSocket {
         System.out.println("close : " + session.getId());
     }
 
-    // json = {"playerName":"myName","imgName":"","img":""}
+    // json = {"playerName":"myName","userList":["test","test2"],"imgName":"","img":""}
     @OnMessage
     public void onMessage(String json, Session session) {
 
@@ -81,7 +82,18 @@ public class UpdateWebSocket {
             messageBroadcast(sendJson);
         // playerName,img,imgNameのとき
         } else {
-
+            System.out.println(info.img);
+            // DataManagerに登録
+            DataManager dataMgr = new DataManager();
+            dataMgr.setStatement(info.playerName, info.imgName, info.img);
+            StringBuilder builder = new StringBuilder();
+            builder.append('{');
+            builder.append('\"').append("img").append('\"');
+            builder.append(':');
+            builder.append('\"').append(info.img).append('\"');
+            builder.append('}');
+            String sendJson = builder.toString();
+            messageBroadcast(sendJson);
         }
 
     }
@@ -112,7 +124,7 @@ public class UpdateWebSocket {
                 userList.get(i).setSessionId(session.getId());
             }
         }
-        sessions.add(session);
+
         System.out.println("セッションのsize"+sessions.size());
         System.out.println("UserListのsize"+userList.size());
     }

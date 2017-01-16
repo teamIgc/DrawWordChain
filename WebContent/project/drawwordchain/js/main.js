@@ -1,8 +1,9 @@
 var xmlHttpRequest;
-var startws;
-var updatews;
-var myName;
+var startws; // ゲームの開始ボタンを押すまでのWebSocket変数
+var updatews; // ゲームプレイ中のWebSocket変数
+var myName; // 自分のuser名
 var userList;
+var playerFlag; // 書き手かどうかの判別
 var LOCATION = "localhost:8080/isp2";
 // "ecl.info.kindai.ac.jp/16/isp2/warup/servlet/B17";
 // "localhost:8080/isp2";
@@ -83,6 +84,7 @@ window.addEventListener("load", function() {
                 }
             }
 
+            // json = {"playerName":"myName","userList":["test","test2"],"imgName":"","img":""}
             var json = "{\"playerName\": \""+myName+"\",\"userList\":["+userListJson+"],\"imgName\": \"\",\"img\": \"\"}";
             updatews.send(json);
         };
@@ -109,8 +111,11 @@ window.addEventListener("load", function() {
             arrow.appendChild(arrowText);
             document.getElementById('pict_display').appendChild(arrow);
 
+            // 以下やること
             // 4行目:myName==playerNameを照合して一致したらプレイヤー名の色を替える処理に変更させる
             // 開始ボタンを無効にする
+            // キャンバス初期化
+            // playerFlagをtrueにする．
 
             // element.appendChild(document.createTextNode(playerName));
             // document.getElementById("pict_display").appendChild(element);
@@ -119,13 +124,13 @@ window.addEventListener("load", function() {
 
     // 送信ボタンのEventListener
     document.getElementById("send_button").addEventListener("click",function () {
-        //絵のタイトル未入力の際の動作
+        // 絵のタイトル未入力の際の動作
         var drawWord = document.getElementById("word");
         if (!drawWord.value) {
             alert("絵の名前を入力してください");
             return;
         }
-        //textformに日本語のみが入力されているかの判定
+        // textformに日本語のみが入力されているかの判定
         // for(var i=0;i<drawWord.value.length;i++){
         if (!(drawWord.value.match(/^[\u3040-\u309F]+$/)) && !drawWord.value.match(/ー/)) {
             alert("平仮名のみで入力してください");
@@ -138,7 +143,7 @@ window.addEventListener("load", function() {
         }
         // }
 
-        //プレイヤー名の中に絵のタイトルを表示(一時的なもの)
+        // プレイヤー名の中に絵のタイトルを表示(一時的なもの)
         var userName = document.getElementById("user_name");
         // //---------------あとで消す----------------------------
         // var drawTitle = document.createElement('div');
@@ -151,22 +156,32 @@ window.addEventListener("load", function() {
         var data = canvas.toDataURL("image/jpeg");
         // alert(data);
 
-        var img = new Image();
-        img.src = data;
-        img.width = 250;
-        img.height = 250;
 
-        var newImg = document.createElement('p');
-        newImg.style.cssText="display:table-cell;"+"vertical-align:middle;"+"border: 1px solid black;";
-        newImg.appendChild(img);
-        document.getElementById('pict_display').appendChild(newImg);
-        //画像と画像の間に矢印
-        var arrow = document.createElement('p');
-        arrow.style.cssText="display:table-cell;"+"vertical-align:middle;"+"font-size:100px;"+"color:white;";
-        var arrowText = document.createTextNode("→");
-        arrow.appendChild(arrowText);
-        document.getElementById('pict_display').appendChild(arrow);
+        // 画像送信用
+        // json = {"playerName":"myName","userList":[],"imgName":"絵の名前","img":"絵のデータ"}
+        var json = "{\"playerName\": \""+myName+"\",\"userList\":[],\"imgName\": \"drawWord.value\",\"img\": \""+data+"\"}";
+        updatews.send(json);
 
+        // imgデータの受取
+        updatews.onmessage = function(receive) {
+            var response = JSON.parse(receive.data);
+            var imgData = response.img;
+            var img = new Image();
+            img.src = imgData;
+            img.width = 250;
+            img.height = 250;
+
+            var newImg = document.createElement('p');
+            newImg.style.cssText="display:table-cell;"+"vertical-align:middle;"+"border: 1px solid black;";
+            newImg.appendChild(img);
+            document.getElementById('pict_display').appendChild(newImg);
+            //画像と画像の間に矢印
+            var arrow = document.createElement('p');
+            arrow.style.cssText="display:table-cell;"+"vertical-align:middle;"+"font-size:100px;"+"color:white;";
+            var arrowText = document.createTextNode("→");
+            arrow.appendChild(arrowText);
+            document.getElementById('pict_display').appendChild(arrow);
+        };
 
         //がめんクリア
         ctx.beginPath();
