@@ -102,12 +102,12 @@ public class UpdateWebSocket {
             int count = userList.size();
             for (int i = 0; i < userList.size(); i++) {
                 if( !(userList.get(i).getName() == "") ) {
-                    user = userList.get(i).getName();
+                    playerName = userList.get(i).getName();
                     break;
                 }
                 count--;
                 if (count == 0) {
-                    boolean redirectFlag = true;
+                    redirectFlag = true;
                 }
             }
 

@@ -202,7 +202,7 @@ function sendToUpdateWebSocket() {
             //redirectFlagがtrueになったらページをresult.htmlに飛ばす
             var redirectFlag = response.redirectFlag;
             if(redirectFlag){
-              location.replace=(resultLocacion);
+              location.replace(resultLocacion);
             }
         };
 
