@@ -48,5 +48,9 @@ public class StartServlet extends ActionServlet {
 	        writer.append(json);
 	        writer.flush();
 		}
+
+		// userをSessionScopeから削除
+		request.getSession().removeAttribute("user");
+
 	}
 }
