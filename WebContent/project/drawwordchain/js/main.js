@@ -4,7 +4,7 @@ var updatews = null; // ゲームプレイ中のWebSocket変数
 var myName; // 自分のuser名
 var userList;
 var playerFlag; // 書き手かどうかの判別
-var startButtonJson;
+// var startButtonJson;
 var WSLOCATION = wsLocationResult;
 // School: "ecl.info.kindai.ac.jp/16/isp2/warup/servlet/B17";
 // "localhost:8080/isp2";
@@ -16,7 +16,10 @@ function init() {
 
     // 開始ボタンのEventListener
     document.getElementById("start_button").addEventListener("click", function() {
-        updatews.send(startButtonJson);
+
+        /* 接続時にユーザリストと自分の名前をパックして送信 */
+        updatews.send(createUpdateWsJsonPack());
+
     }, false);
 
     // 送信ボタンのEventListener
@@ -122,23 +125,7 @@ function sendToUpdateWebSocket() {
         updatews = new WebSocket(WSLOCATION + 'updatebroadcast');
     }
 
-    /* 接続時にユーザリストと自分の名前をパック */
     updatews.onopen = function() {
-        // userListJson = a", "b", "c"
-        var userListJson = "";
-
-        for (var i = 0; i < userList.length; i++) {
-            userListJson += "\"" + userList[i] + "\"";
-            if (i == userList.length - 1) {} else {
-                userListJson += ",";
-            }
-        }
-
-        // json = {"playerName":"myName","userList":["test","test2"],"imgName":"","img":""}
-        startButtonJson = "{\"playerName\": \"" + myName + "\",\"userList\":[" + userListJson + "],\"imgName\": \"\",\"img\": \"\"}";
-
-        // ここで開始ボタンを有効化
-        // <未実装>
     };
 
     /* プレイヤー名と最初の文字を受取 */
@@ -182,28 +169,29 @@ function sendToUpdateWebSocket() {
             img.width = 250;
             img.height = 250;
 
-            console.log(response.img);
-
             var newImg = document.createElement('p');
             newImg.style.cssText = "display:table-cell;" + "vertical-align:middle;" + "border: 1px solid black;";
             newImg.appendChild(img);
             document.getElementById('pict_display').appendChild(newImg);
-            //画像と画像の間に矢印
+            // 画像と画像の間に矢印
             var arrow = document.createElement('p');
             arrow.style.cssText = "display:table-cell;" + "vertical-align:middle;" + "font-size:100px;" + "color:white;";
             var arrowText = document.createTextNode("→");
             arrow.appendChild(arrowText);
             document.getElementById('pict_display').appendChild(arrow);
 
-            //現在の描き手を更新
+            // 現在の描き手を更新
             var playerName = response.playerName;
             document.getElementById('now_draw_user').innerHTML=playerName;
 
-            //redirectFlagがtrueになったらページをresult.htmlに飛ばす
+            // redirectFlagがtrueになったらページをresult.htmlに飛ばす
             var redirectFlag = response.redirectFlag;
             if(redirectFlag){
               location.replace(resultLocacion);
             }
+
+            console.log(response.playerName);
+            console.log(response.redirectFlag);
         };
 
         // データを受け取ったときに現在の落書きを削除
@@ -217,6 +205,22 @@ function clearCanvas() {
     ctx.fillStyle = "#f5f5f5";
     ctx.globalAlpha = 1.0;
     ctx.fillRect(0, 0, 500, 500);
+}
+
+function createUpdateWsJsonPack() {
+    // userListをJson形式にパック
+    // userListJson = a", "b", "c"
+    var userListJson = "";
+    for (var i = 0; i < userList.length; i++) {
+        userListJson += "\"" + userList[i] + "\"";
+        if (i == userList.length - 1) {} else {
+            userListJson += ",";
+        }
+    }
+    // json = {"playerName":"myName","userList":["test","test2"],"imgName":"","img":""}
+    var startButtonJson = "{\"playerName\": \"" + myName + "\",\"userList\":[" + userListJson + "],\"imgName\": \"\",\"img\": \"\"}";
+    console.log(startButtonJson);
+    return startButtonJson;
 }
 
 // ページ読み込み時
