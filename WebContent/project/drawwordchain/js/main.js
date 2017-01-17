@@ -219,6 +219,18 @@ function clearCanvas() {
     ctx.fillRect(0, 0, 500, 500);
 }
 
+//ボタン有効化(引数:ボタンのid)
+function buttonEnabled(button){
+  button = document.getElementById(button);
+  button.disabled=false;
+}
+//ボタン無効化(引数:ボタンのid)
+function buttonDisabled(button){
+  button = document.getElementById(button);
+  button.disabled=true;
+}
+
+
 // ページ読み込み時
 window.addEventListener("load", function() {
     init(); // 初期化用メソッド
