@@ -25,10 +25,11 @@ public class StartWebSocket extends WebSocket {
     private static final List<WebSocketUser> userList = new ArrayList<WebSocketUser>();
 
     @OnOpen
-    public void connect(Session session) {
+    public void connect(Session session) throws IOException {
         System.out.println("open : " + session.getId());
         if(sessions.size() > 0) {
             session.getAsyncRemote().sendText("既にゲームが始まっています");
+            session.close();
         } else {
             startWebSocketSessions.add(session);
         }

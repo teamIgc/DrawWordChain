@@ -101,6 +101,7 @@ function sendToStartWebSocket(userName) {
     };
 
     startws.onmessage = function(receive) {
+        // ゲームが始まっているときの処理
         if(receive.data === "既にゲームが始まっています") {
             alert("既にゲームが始まっています");
             location.replace(indexLocation);
