@@ -172,6 +172,7 @@ function sendToUpdateWebSocket() {
 
         // send_buttonを押したときのみに更新してしまうため，他のプレイヤーが受信できない問題
         // updatews.onmessageの更新/imgデータの受取
+        // {"img":"画像データ","playerName":"プレイヤー名","redirectFlag":"終了する"}
         updatews.onmessage = function(receive) {
             console.log("更新後のupdatewsのonmessage");
             var response = JSON.parse(receive.data);
