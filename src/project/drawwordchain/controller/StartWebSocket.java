@@ -27,7 +27,9 @@ public class StartWebSocket extends WebSocket {
     @OnOpen
     public void connect(Session session) throws IOException {
         System.out.println("open : " + session.getId());
+        // ゲームが始まっているときの処理
         if(sessions.size() > 0) {
+            System.out.println("きたよ");
             session.getAsyncRemote().sendText("既にゲームが始まっています");
             session.close();
         } else {
@@ -44,10 +46,6 @@ public class StartWebSocket extends WebSocket {
                 userList.remove(i);
             }
         }
-        // 全て削除/デバッグ用
-        // startWebSocketSessions.clear();
-        // userList.clear();
-
         startWebSocketSessions.remove(session);
         userNameBroadcast();
     }
