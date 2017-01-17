@@ -35,12 +35,12 @@ function init() {
             // textformに日本語のみが入力されているかの判定
 
             // textformに日本語のみが入力されているかの判定
-            if (!(drawWord.value.match(/^[\u3040-\u309F]+$/)) && !drawWord.value.match(/ー/)) {
+            if (!(drawWord.value.match(/^[\u3040-\u309F]+$/))) {
+              if(drawWord.value.match(/ー/)){
+              }else{
               alert("平仮名のみで入力してください");
               return;
-            } else if (!(drawWord.value.match(/^[\u3040-\u309F]+$/)) && drawWord.value.match(/ー/)){
-              alert("平仮名のみで入力してください");
-              return;
+              }
             }
             var lastWord = drawWord.value.slice(-1);
             if (lastWord.match(/ん/)) {
