@@ -17,15 +17,15 @@ public class ActionServlet extends HttpServlet {
      * 初期化用メソッド
      * 起動時にDrawingをインスタンス化してアプリケーションスコープに保存
      */
-	@Override
-	public void init() throws ServletException {
-		ServletContext context = this.getServletContext();
-
-		Drawing drawing = (Drawing)context.getAttribute("drawing");
-		if(drawing == null) {
-			drawing = new Drawing();
-			context.setAttribute("drawing", drawing);
-		}
-	}
+	// @Override
+	// public void init() throws ServletException {
+		// ServletContext context = this.getServletContext();
+        //
+		// Drawing drawing = (Drawing)context.getAttribute("drawing");
+		// if(drawing == null) {
+		// 	drawing = new Drawing();
+		// 	context.setAttribute("drawing", drawing);
+		// }
+	// }
 
 }
