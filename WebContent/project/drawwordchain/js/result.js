@@ -64,6 +64,7 @@ function receiveResponse() {
   // response = JSON.parse(response);//Jsonをjavascriptのオブジェクトに変換
   // response = JSON.parse(xmlHttpRequest.responseText);
   var response = eval("(" + xmlHttpRequest.responseText + ")");
+  document.getElementById('gamediv').innerHTML="";
   for(var i=0; i<response.statement.length; i++){
     CreateText(response.statement[i].name,response.statement[i].word);//描いた人の名前とイラスト名表示
     Base64ToImage(response.statement[i].data);//画像表示
