@@ -51,6 +51,7 @@ canvas {
 #answer_area{
   float: right;
   margin-top:10px;
+  color:#fff;
 
 }
 
@@ -61,7 +62,18 @@ canvas {
   font-size: 1em;
   height: 300px;
   width: 150px;
-  border: 1px solid green;
+  /*border: 1px solid green;*/
+
+  border: 1px
+  solid #aaa;
+  padding: 7px;
+}
+
+.user_name_id{
+  text-align:center;
+  margin: 5px;
+  border-bottom: 1px solid pink;
+  font-size:20px;
 }
 
 #user{

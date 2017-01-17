@@ -109,6 +109,7 @@ function sendToStartWebSocket(userName) {
         userList.forEach(function(user) {
             console.log("userList: "+user);
             var userElement = document.createElement("div");
+            userElement.className="user_name_id";
             userElement.appendChild(document.createTextNode(user));
             userAreaElement.appendChild(userElement);
         });
@@ -221,6 +222,17 @@ function createUpdateWsJsonPack() {
     var startButtonJson = "{\"playerName\": \"" + myName + "\",\"userList\":[" + userListJson + "],\"imgName\": \"\",\"img\": \"\"}";
     console.log(startButtonJson);
     return startButtonJson;
+}
+
+//ボタン有効化(引数:ボタンのid)
+function buttonEnabled(button){
+  button = document.getElementById(button);
+  button.disabled=false;
+}
+//ボタン無効化(引数:ボタンのid)
+function buttonDisabled(button){
+  button = document.getElementById(button);
+  button.disabled=true;
 }
 
 // ページ読み込み時
