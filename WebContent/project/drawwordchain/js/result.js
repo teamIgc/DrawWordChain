@@ -1,16 +1,16 @@
 var xmlHttpRequest;
 
-var json_data2 =
-{
-  "statement": [
-    {"name":"つじの","data":"data:image/jpeg;base64,","word":"初音ミク"},
-    {"name":"TND","data":"data:image/jpeg;base64,","word":"車"}
-  ],
-  "judge":[
-    false,
-    true
-    ]
-};
+// var json_data2 =
+// {
+//   "statement": [
+//     {"name":"つじの","data":"data:image/jpeg;base64,","word":"初音ミク"},
+//     {"name":"TND","data":"data:image/jpeg;base64,","word":"車"}
+//   ],
+//   "judge":[
+//     false,
+//     true
+//     ]
+// };
 
 //たぶん使わない
 function JsonParse(text){
@@ -100,4 +100,4 @@ function CreateText(name,word){
   document.getElementById("gamediv").appendChild(t);
 }
 
-receiveResponse();//テスト用なのであとでコメントアウトしてね
+// receiveResponse();//テスト用なのであとでコメントアウトしてね
