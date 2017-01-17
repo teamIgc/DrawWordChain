@@ -47,7 +47,7 @@ function init() {
 
         // 画像送信用
         // json = {"playerName":"myName","userList":[],"imgName":"絵の名前","img":"絵のデータ"}
-        var json = "{\"playerName\": \"" + myName + "\",\"userList\":[],\"imgName\": \"drawWord.value\",\"img\": \"" + data + "\"}";
+        var json = "{\"playerName\": \"" + myName + "\",\"userList\":[],\"imgName\": \""+drawWord.value+"\",\"img\": \"" + data + "\"}";
 
         // 画像データ送信用のupdatewsを受け取ってから送信する
         updatews.send(json);
