@@ -161,13 +161,13 @@ function sendToUpdateWebSocket() {
         arrow.appendChild(arrowText);
         document.getElementById('pict_display').appendChild(arrow);
 
+        //現在のプレイヤー名を表示
+        document.getElementById('now_draw_user').innerHTML=playerName;
+
         // 以下やること
         // 開始ボタンを無効にする
         // playerFlagをtrueにする．
 
-        // 動作しないためチェックしてください
-        // element.appendChild(document.createTextNode(playerName));
-        // document.getElementById("pict_display").appendChild(element);
 
         //startwsを切断
         console.log("startwsの切断");
