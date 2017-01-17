@@ -46,6 +46,8 @@ public class UpdateWebSocket {
     @OnMessage
     public void onMessage(String json, Session session) {
 
+        // startwsのclose
+
         // jsonデータの取り出し
         Info info = new Info();
         try {
@@ -56,7 +58,7 @@ public class UpdateWebSocket {
             System.err.println(e.getMessage());
         }
 
-        // playerName,userListのとき
+        // playerName,userListのとき(1回目の受信)
         if(info.imgName.length() == 0) {
 
             // 送られてきたuserListを自クラスのuserListに挿入
@@ -81,7 +83,8 @@ public class UpdateWebSocket {
             String sendJson = builder.toString();
             System.out.println("jsonデータ: "+sendJson);
             messageBroadcast(sendJson);
-        // playerName,img,imgNameのとき
+
+        // playerName,img,imgNameのとき(2回目以降の受信)
         } else {
             System.out.println(info.img);
             // DataManagerに登録

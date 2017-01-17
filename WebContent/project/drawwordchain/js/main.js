@@ -1,6 +1,6 @@
 var xmlHttpRequest;
 var startws; // ゲームの開始ボタンを押すまでのWebSocket変数
-var updatews; // ゲームプレイ中のWebSocket変数
+var updatews = null; // ゲームプレイ中のWebSocket変数
 var myName; // 自分のuser名
 var userList;
 var playerFlag; // 書き手かどうかの判別
@@ -16,6 +16,7 @@ function init() {
 
     // 開始ボタンのEventListener
     document.getElementById("start_button").addEventListener("click", function() {
+        startws.close(1000);
         updatews.send(startButtonJson);
     }, false);
 
@@ -48,27 +49,6 @@ function init() {
         // 画像送信用
         // json = {"playerName":"myName","userList":[],"imgName":"絵の名前","img":"絵のデータ"}
         var json = "{\"playerName\": \"" + myName + "\",\"userList\":[],\"imgName\": \"drawWord.value\",\"img\": \"" + data + "\"}";
-
-        // updatews.onmessageの更新/imgデータの受取
-        updatews.onmessage = function(receive) {
-            var response = JSON.parse(receive.data);
-            var imgData = response.img;
-            var img = new Image();
-            img.src = imgData;
-            img.width = 250;
-            img.height = 250;
-
-            var newImg = document.createElement('p');
-            newImg.style.cssText = "display:table-cell;" + "vertical-align:middle;" + "border: 1px solid black;";
-            newImg.appendChild(img);
-            document.getElementById('pict_display').appendChild(newImg);
-            //画像と画像の間に矢印
-            var arrow = document.createElement('p');
-            arrow.style.cssText = "display:table-cell;" + "vertical-align:middle;" + "font-size:100px;" + "color:white;";
-            var arrowText = document.createTextNode("→");
-            arrow.appendChild(arrowText);
-            document.getElementById('pict_display').appendChild(arrow);
-        };
 
         // 画像データ送信用のupdatewsを受け取ってから送信する
         updatews.send(json);
@@ -138,7 +118,10 @@ function sendToStartWebSocket(userName) {
 
 /* updatewsで自分の名前と参加者リストを送信/ */
 function sendToUpdateWebSocket() {
-    updatews = new WebSocket('ws://' + LOCATION + '/project/drawwordchain/updatebroadcast');
+
+    if(updatews === null) {
+        updatews = new WebSocket('ws://' + LOCATION + '/project/drawwordchain/updatebroadcast');
+    }
 
     /* 接続時にユーザリストと自分の名前をパック */
     updatews.onopen = function() {
@@ -159,7 +142,7 @@ function sendToUpdateWebSocket() {
         // <未実装>
     };
 
-    /*  */
+    /* プレイヤー名と最初の文字を受取 */
     updatews.onmessage = function(receive) {
         console.log("updatewsのonmessage");
         // receive.data = {"playerName" : "Name", "firstChar" : "文字"}
@@ -188,6 +171,32 @@ function sendToUpdateWebSocket() {
 
         // element.appendChild(document.createTextNode(playerName));
         // document.getElementById("pict_display").appendChild(element);
+
+        // send_buttonを押したときのみに更新してしまうため，他のプレイヤーが受信できない問題
+        // updatews.onmessageの更新/imgデータの受取
+        updatews.onmessage = function(receive) {
+            console.log("更新後のupdatewsのonmessage");
+            var response = JSON.parse(receive.data);
+            var imgData = response.img;
+            var img = new Image();
+            img.src = imgData;
+            img.width = 250;
+            img.height = 250;
+
+            console.log(response.img);
+
+            var newImg = document.createElement('p');
+            newImg.style.cssText = "display:table-cell;" + "vertical-align:middle;" + "border: 1px solid black;";
+            newImg.appendChild(img);
+            document.getElementById('pict_display').appendChild(newImg);
+            //画像と画像の間に矢印
+            var arrow = document.createElement('p');
+            arrow.style.cssText = "display:table-cell;" + "vertical-align:middle;" + "font-size:100px;" + "color:white;";
+            var arrowText = document.createTextNode("→");
+            arrow.appendChild(arrowText);
+            document.getElementById('pict_display').appendChild(arrow);
+        };
+
     };
 }
 
@@ -197,6 +206,7 @@ window.addEventListener("load", function() {
 }, false);
 
 // // ページ終了時
-// window.addEventListener("beforeunload", function() {
-//
-// }, false);
+window.addEventListener("beforeunload", function() {
+    startws.close(1000);
+    updatews.close(1000);
+}, false);
