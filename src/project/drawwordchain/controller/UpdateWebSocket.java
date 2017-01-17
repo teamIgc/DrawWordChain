@@ -94,8 +94,6 @@ public class UpdateWebSocket {
             builder.append('\"').append(info.img).append('\"');
             builder.append('}');
             String sendJson = builder.toString();
-
-            System.out.println("返すデータ\n"+sendJson);
             messageBroadcast(sendJson);
         }
 

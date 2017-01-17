@@ -5,7 +5,7 @@ var myName; // 自分のuser名
 var userList;
 var playerFlag; // 書き手かどうかの判別
 var startButtonJson;
-var LOCATION = "localhost:8080/isp2";
+var WSLOCATION = wsLocationResult;
 // School: "ecl.info.kindai.ac.jp/16/isp2/warup/servlet/B17";
 // "localhost:8080/isp2";
 
@@ -47,13 +47,15 @@ function init() {
 
         // 画像送信用
         // json = {"playerName":"myName","userList":[],"imgName":"絵の名前","img":"絵のデータ"}
-        var json = "{\"playerName\": \"" + myName + "\",\"userList\":[],\"imgName\": \"drawWord.value\",\"img\": \"" + data + "\"}";
+        var json = "{\"playerName\": \"" + myName + "\",\"userList\":[],\"imgName\": \""+drawWord.value+"\",\"img\": \"" + data + "\"}";
 
         // 画像データ送信用のupdatewsを受け取ってから送信する
         updatews.send(json);
 
         // 画面クリア
         clearCanvas();
+        document.getElementById("word").value="";
+
 
     }, false);
 
@@ -84,7 +86,7 @@ function checkStartRequest() {
 
 /* startwsで自分の名前を送信/参加者を受取/参加者リストに表示/参加を確認できたらsendToUpdateWebSocketへの接続を行う */
 function sendToStartWebSocket(userName) {
-    startws = new WebSocket('ws://' + LOCATION + '/project/drawwordchain/startbroadcast');
+    startws = new WebSocket(WSLOCATION+'startbroadcast');
 
     startws.onopen = function() {
         startws.send(userName);
@@ -117,7 +119,7 @@ function sendToStartWebSocket(userName) {
 function sendToUpdateWebSocket() {
 
     if(updatews === null) {
-        updatews = new WebSocket('ws://' + LOCATION + '/project/drawwordchain/updatebroadcast');
+        updatews = new WebSocket(WSLOCATION + 'updatebroadcast');
     }
 
     /* 接続時にユーザリストと自分の名前をパック */
@@ -163,6 +165,7 @@ function sendToUpdateWebSocket() {
 
         //現在のプレイヤー名を表示
         document.getElementById('now_draw_user').innerHTML=playerName;
+
 
         // 以下やること
         // 開始ボタンを無効にする
