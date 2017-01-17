@@ -31,6 +31,8 @@ public class UpdateWebSocket {
 
     private static boolean userListFlag = true;
 
+    private boolean redirectFlag = false;
+
     @OnOpen
     public void connect(Session session) {
         sessions.add(session);
@@ -38,8 +40,21 @@ public class UpdateWebSocket {
 
     @OnClose
     public void onClose(Session session) {
+        System.out.println("updateWSclose : " + session.getId());
+        // 最後の時(全員が離脱するときはallclear)
+        if(redirectFlag) {
+            userList.clear();
+            userListFlag = true;
+        } else {
+            for (Session s : sessions) {
+                for (WebSocketUser wsUser : userList) {
+                    if( s.getId() == wsUser.getSessionId() ) {
+                        userList.remove(wsUser);
+                    }
+                }
+            }
+        }
         sessions.remove(session);
-        System.out.println("close : " + session.getId());
     }
 
     // json = {"playerName":"myName","userList":["test","test2"],"imgName":"","img":""}
@@ -97,7 +112,6 @@ public class UpdateWebSocket {
 
             // 次のプレイヤー名を取得
             String playerName = "";
-            boolean redirectFlag = false;
             int count = userList.size();
             for (int i = 0; i < userList.size(); i++) {
                 if( !(userList.get(i).getName() == "") ) {
@@ -154,7 +168,7 @@ public class UpdateWebSocket {
 
         // userListの中にある名前と一致した名前のセッションを登録
         for (int i = 0; i < userList.size(); i++) {
-            if(userList.get(i).getName() == info.playerName) {
+            if(userList.get(i).getName().equals(info.playerName)) {
                 userList.get(i).setSessionId(session.getId());
             }
         }
