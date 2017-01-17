@@ -1,16 +1,32 @@
+body {
+    background-image: linear-gradient(-90deg, #FFA494, #ABCB95);
+}
+
 h1 {
     font-size: 2em;
+    color: #fff;
 }
+
+#now_draw{
+    margin-left: 50px;
+    font-size: 20px;
+    color: #f0ffff;
+}
+
+#now_draw_user{
+    font-size: 40px;
+    color: #f0ffff;
+}
+
 
 canvas {
     background-color: white;
-    margin: 0px 40px;
-    width: 700px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
 }
 
 .menuicon {
-    float: left;
+    /*float: left;*/
     text-align: center;
     background: #EEE;
     border: 1px solid #DDD;
@@ -18,8 +34,74 @@ canvas {
     width: 30px;
     height: 30px;
     border-radius: 50px;
+
 }
 
-#player_area {
-    margin-top: 50px;
+#canvasmenu{
+  float:left;
+  margin-left:3px;
+}
+
+#canvas_area{
+  float: left;
+  width: 500px;
+  margin-left: 40px;
+}
+
+#answer_area{
+  float: right;
+  margin-top:10px;
+  color:#fff;
+
+}
+
+#user_area {
+  background-color:#f5f5f5;
+  float: left;
+  margin-left: 10px;
+  font-size: 1em;
+  height: 300px;
+  width: 150px;
+  /*border: 1px solid green;*/
+
+  border: 1px
+  solid #aaa;
+  padding: 7px;
+}
+
+.user_name_id{
+  text-align:center;
+  margin: 5px;
+  border-bottom: 1px solid pink;
+  font-size:20px;
+}
+
+#user{
+  text-align: center;
+  line-height: 30px;
+  height:30px;
+  width:150px;
+}
+
+#user_name{
+  width:150px;
+  height: 90%;
+  border-top:1px solid pink;
+  /*自動改行禁止*/
+  white-space: nowrap;
+  overflow: scroll;
+}
+
+#pict_display{
+  /*background-color:#f5f5f5;*/
+  /*border: 1px solid black;*/
+  margin-top:560px;
+  margin-left:40px;
+  margin-right:40px;
+  margin-bottom:40px;
+  height: 260px;
+  /*自動改行禁止*/
+  white-space: nowrap;
+  overflow: scroll;
+
 }

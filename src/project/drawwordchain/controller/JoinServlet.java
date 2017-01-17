@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import project.drawwordchain.model.Drawing;
-import project.drawwordchain.model.Character;
 import project.drawwordchain.model.User;
 
 @WebServlet("/project/drawwordchain/join")
@@ -26,10 +25,10 @@ public class JoinServlet extends ActionServlet {
 		HttpSession session = request.getSession();
 
         // アプリケーションスコープの作成
-		ServletContext application = this.getServletContext();
+		ServletContext context = this.getServletContext();
 
         // スコープからDrawingオブジェクトを取得
-		Drawing drawing = (Drawing)application.getAttribute("drawing");
+		Drawing drawing = (Drawing)context.getAttribute("drawing");
 		User user = drawing.getUserByName(name);
 
         // 既存ユーザの確認/いなければ登録

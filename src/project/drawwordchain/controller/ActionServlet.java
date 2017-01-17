@@ -19,12 +19,12 @@ public class ActionServlet extends HttpServlet {
      */
 	@Override
 	public void init() throws ServletException {
-		ServletContext application = this.getServletContext();
+		ServletContext context = this.getServletContext();
 
-		Drawing drawing = (Drawing)application.getAttribute("drawing");
+		Drawing drawing = (Drawing)context.getAttribute("drawing");
 		if(drawing == null) {
 			drawing = new Drawing();
-			application.setAttribute("drawing", drawing);
+			context.setAttribute("drawing", drawing);
 		}
 	}
 

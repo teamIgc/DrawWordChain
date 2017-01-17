@@ -2,24 +2,36 @@ package project.drawwordchain.model;
 
 public class Statement {
 
-	private User user;
+    private String user;
 
-	private String message;
+    private String word;
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    private String imgData;
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    Statement(String user,String word,String imgData){
+    	this.user = user;
+    	this.word = word;
+    	this.imgData = imgData;
 
-	public User getUser() {
-		return this.user;
-	}
+    }
 
-	public String getMessage() {
-		return this.message;
-	}
+    public String getUser() {
+        return this.user;
+    }
 
+    public String getWord() {
+        return this.word;
+    }
+
+    public String getImageData() {
+        return this.imgData;
+    }
+
+    // //テスト用
+    // public static void main(String args[]){
+    // 	Statement statement = new Statement("111","222","333");
+    // 	System.out.println(statement.getUser());
+    // 	System.out.println(statement.getWord());
+    // 	System.out.println(statement.getImageData());
+    // }
 }

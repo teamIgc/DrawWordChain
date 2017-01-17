@@ -9,10 +9,25 @@
 </head>
 
 <body>
-    <h1>お絵かきしりとり</h1>
+    <h1>Draw word chain</h1>
     <hr>
-    <!-- <canvas width="640" height="480" style="border: 1px solid black;"></canvas> -->
-    <canvas id="myCanvas" width="700" height="400" style="border: 1px solid black;"></canvas>
+
+    <div id="now_draw">現在の描き手:
+      <span id="now_draw_user"></span>
+    </div>
+
+    <div id="canvas_area">
+        <canvas id="myCanvas" width="500" height="500" style="border: 1px solid black;"></canvas>
+        <div id="answer_area">
+            絵のタイトル
+            <input type="text" id="word" placeholder="例:りんご" >
+            <!-- デフォルトでsend_buttonを無効化-->
+            <button id="send_button" disabled>送信</button>
+            <!-- デフォルトでstart_buttonを無効化-->
+            <button id="start_button" disabled>開始</button>
+        </div>
+    </div>
+
     <div id="canvasmenu">
         <div class="menuicon" id="clear">×</div>
         <div class="menuicon" id="colorf5f5f5">消</div>
@@ -30,32 +45,24 @@
         <div class="menuicon" id="alpha6" style="background-color:rgba(255,72,1, 0.6)">6</div>
         <div class="menuicon" id="alpha3" style="background-color:rgba(255,72,1, 0.3)">3</div>
         <div class="menuicon" id="alpha1" style="background-color:rgba(255,72,1, 0.1)">1</div>
-        <div><button id="toJSON" type="button">Jsonで送信</button></div>
     </div>
 
-    <div id="player_area">
-        <dl>
-            <dt>p1</dt>
-            <dd>test</dd>
-            <dt>p2</dt>
-            <dd></dd>
-        </dl>
+    <div id="user_area">
+        <p id="user">プレイヤー名</p>
+        <div id="user_name">
+            <!-- <p style="font-size:100px;">名前</p>
+        <p style="font-size:100px;">表示したいな</p> -->
+        </div>
     </div>
 
-    <div id="send_button_area">
-        <button id="send_button">開始</button>
+    <div id="pict_display">
+        <!-- <p style="font-size:250px;">絵を表示したいな</p> -->
+
     </div>
 
+    <script type="text/javascript" src="js/location.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/draw.js"></script>
-    <script type="text/javascript">
-        document.getElementById('toJSON').addEventListener("click", function() {
-            var data = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            console.log(data);
-            console.log(JSON.stringify(data));
-            alert(JSON.stringify(data))
-        }, false);
-    </script>
 </body>
 
 </html>
