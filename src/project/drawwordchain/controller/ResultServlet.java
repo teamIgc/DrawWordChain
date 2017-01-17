@@ -40,16 +40,17 @@ public class ResultServlet extends ActionServlet {
 		DataManager data = new DataManager ();//DataManager作る
 
 
-		    	data.setStatement("つじの","りんご","data:image/jpeg;base64,");
-		    	data.setStatement("うま","はつねみく","data:image/jpeg;base64,");
-		    	data.setStatement("TND","くるま","data:image/jpeg;base64,");
+		    	// data.setStatement("つじの","りんご","data:image/jpeg;base64,");
+		    	// data.setStatement("うま","はつねみく","data:image/jpeg;base64,");
+		    	// data.setStatement("TND","くるま","data:image/jpeg;base64,");
 
 		    	List<Statement> sList = DataManager.getStatementList();
 		    	System.out.println(sList.size());
 		        for ( int i = 0; i < sList.size(); i++ ) {
 		        	System.out.println("ユーザー名" + sList.get(i).getUser());
 		        	System.out.println("イラスト名" + sList.get(i).getWord());
-		        	System.out.println("イラストData" + sList.get(i).getImageData());
+		        	System.out.println("イラストDataは長いので省略");
+							// System.out.println("イラストData" + sList.get(i).getImageData());
 		        }
 
 
