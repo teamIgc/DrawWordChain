@@ -54,6 +54,8 @@ function init() {
 
         // 画面クリア
         clearCanvas();
+        document.getElementById("word").value="";
+
 
     }, false);
 
