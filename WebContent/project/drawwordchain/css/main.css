@@ -26,7 +26,6 @@ canvas {
 }
 
 .menuicon {
-    /*float: left;*/
     text-align: center;
     background: #EEE;
     border: 1px solid #DDD;
@@ -56,23 +55,22 @@ canvas {
 }
 
 #user_area {
-  background-color:#f5f5f5;
+  background-color:#fff;
   float: left;
   margin-left: 10px;
   font-size: 1em;
   height: 300px;
   width: 150px;
-  /*border: 1px solid green;*/
-
-  border: 1px
-  solid #aaa;
   padding: 7px;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px #cafbce;
+  color: #0a8915;
 }
 
 .user_name_id{
   text-align:center;
   margin: 5px;
-  border-bottom: 1px solid pink;
+  border-bottom: 1px solid #0a8915;
   font-size:20px;
 }
 
@@ -93,8 +91,6 @@ canvas {
 }
 
 #pict_display{
-  /*background-color:#f5f5f5;*/
-  /*border: 1px solid black;*/
   margin-top:560px;
   margin-left:40px;
   margin-right:40px;
@@ -110,8 +106,6 @@ canvas {
   margin-bottom:50px;
   margin-right:40px;
   overflow: scroll;
-
-  /*background-color: #cafbce;*/
   border: 2px solid #fff;
   box-shadow: 0 0 0 2px #cafbce;
   color: #0a8915;
