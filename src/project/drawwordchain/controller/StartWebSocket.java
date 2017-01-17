@@ -38,6 +38,10 @@ public class StartWebSocket {
                 userList.remove(i);
             }
         }
+        // 全て削除/デバッグ用
+        // sessions.clear();
+        // userList.clear();
+
         sessions.remove(session);
         userNameBroadcast();
     }
