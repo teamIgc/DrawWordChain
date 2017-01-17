@@ -18,16 +18,20 @@ import project.drawwordchain.model.WebSocketUser;
 import project.drawwordchain.model.DataManager;
 
 @ServerEndpoint("/project/drawwordchain/startbroadcast")
-public class StartWebSocket {
+public class StartWebSocket extends WebSocket {
 
-    private static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
+    private static final Queue<Session> startWebSocketSessions = new ConcurrentLinkedQueue<>();
 
     private static final List<WebSocketUser> userList = new ArrayList<WebSocketUser>();
 
     @OnOpen
     public void connect(Session session) {
         System.out.println("open : " + session.getId());
-        sessions.add(session);
+        if(sessions.size() > 0) {
+            session.getAsyncRemote().sendText("既にゲームが始まっています");
+        } else {
+            startWebSocketSessions.add(session);
+        }
     }
 
     @OnClose
@@ -40,10 +44,10 @@ public class StartWebSocket {
             }
         }
         // 全て削除/デバッグ用
-        // sessions.clear();
+        // startWebSocketSessions.clear();
         // userList.clear();
 
-        sessions.remove(session);
+        startWebSocketSessions.remove(session);
         userNameBroadcast();
     }
 
@@ -73,7 +77,7 @@ public class StartWebSocket {
             }
         }
         System.out.println("送信データ:" + userNameColumn);
-        for ( Session s : sessions ) {
+        for ( Session s : startWebSocketSessions ) {
             s.getAsyncRemote().sendText(userNameColumn);
         }
     }

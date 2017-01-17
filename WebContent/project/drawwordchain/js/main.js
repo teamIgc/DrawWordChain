@@ -101,28 +101,34 @@ function sendToStartWebSocket(userName) {
     };
 
     startws.onmessage = function(receive) {
-        userList = (receive.data).split(",");
-        console.log("startwsのonmessage");
-        var userAreaElement = document.getElementById("user_name");
+        if(receive.data === "既にゲームが始まっています") {
+            alert("既にゲームが始まっています");
+            location.replace(indexLocation);
+            return;
+        } else {
+            userList = (receive.data).split(",");
+            console.log("startwsのonmessage");
+            var userAreaElement = document.getElementById("user_name");
 
-        // データの削除
-        while (userAreaElement.lastChild) {
-            userAreaElement.removeChild(userAreaElement.lastChild);
+            // データの削除
+            while (userAreaElement.lastChild) {
+                userAreaElement.removeChild(userAreaElement.lastChild);
+            }
+
+            // プレイヤーの挿入
+            userList.forEach(function(user) {
+                console.log("userList: "+user);
+                var userElement = document.createElement("div");
+                userElement.className="user_name_id";
+                userElement.appendChild(document.createTextNode(user));
+                userAreaElement.appendChild(userElement);
+            });
+
+            buttonEnabled("start_button");
+
+            // StartWebSocketにデータを送信
+            sendToUpdateWebSocket();
         }
-
-        // プレイヤーの挿入
-        userList.forEach(function(user) {
-            console.log("userList: "+user);
-            var userElement = document.createElement("div");
-            userElement.className="user_name_id";
-            userElement.appendChild(document.createTextNode(user));
-            userAreaElement.appendChild(userElement);
-        });
-
-        buttonEnabled("start_button");
-
-        // StartWebSocketにデータを送信
-        sendToUpdateWebSocket();
     };
 }
 
