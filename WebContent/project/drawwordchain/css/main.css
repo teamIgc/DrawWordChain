@@ -84,7 +84,7 @@ canvas {
 #user_name{
   width:150px;
   height: 90%;
-  border-top:1px solid pink;
+  border-top:1px solid #0a8915;
   /*自動改行禁止*/
   white-space: nowrap;
   overflow: scroll;
