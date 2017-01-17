@@ -106,6 +106,7 @@ function sendToStartWebSocket(userName) {
         userList.forEach(function(user) {
             console.log("userList: "+user);
             var userElement = document.createElement("div");
+            userElement.className="user_name_id";
             userElement.appendChild(document.createTextNode(user));
             userAreaElement.appendChild(userElement);
         });
