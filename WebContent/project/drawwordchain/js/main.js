@@ -114,6 +114,8 @@ function sendToStartWebSocket(userName) {
             userAreaElement.appendChild(userElement);
         });
 
+        buttonEnabled("start_button");
+
         // StartWebSocketにデータを送信
         sendToUpdateWebSocket();
     };
@@ -132,6 +134,7 @@ function sendToUpdateWebSocket() {
     /* プレイヤー名と最初の文字を受取 */
     updatews.onmessage = function(receive) {
         console.log("updatewsのonmessage");
+        buttonDisabled("start_button");
         // receive.data = {"playerName" : "Name", "firstChar" : "文字"}
         var response = JSON.parse(receive.data);
         //firstCharをplay_displayの最初に表示
@@ -154,6 +157,11 @@ function sendToUpdateWebSocket() {
         //現在のプレイヤー名を表示
         document.getElementById('now_draw_user').innerHTML=playerName;
 
+        // 自分の順番が来た場合送信ボタンを有効にする
+        if(playerName==myName){
+          buttonEnabled("send_button");
+        }
+
         //startwsを切断
         console.log("startwsの切断");
         startws.close(1000);
@@ -163,6 +171,8 @@ function sendToUpdateWebSocket() {
         // {"img":"画像データ","playerName":"プレイヤー名","redirectFlag":"終了する"}
         updatews.onmessage = function(receive) {
             console.log("更新後のupdatewsのonmessage");
+            buttonDisabled("send_button");
+
             var response = JSON.parse(receive.data);
             var imgData = response.img;
             var img = new Image();
@@ -184,6 +194,11 @@ function sendToUpdateWebSocket() {
             // 現在の描き手を更新
             var playerName = response.playerName;
             document.getElementById('now_draw_user').innerHTML=playerName;
+
+            // 自分の順番が来た場合送信ボタンを有効にする
+            if(playerName==myName){
+              buttonEnabled("send_button");
+            }
 
             // redirectFlagがtrueになったらページをresult.htmlに飛ばす
             var redirectFlag = response.redirectFlag;
