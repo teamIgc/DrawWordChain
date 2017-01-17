@@ -2,6 +2,10 @@ body {
   background-image: linear-gradient(-90deg, #FFA494, #ABCB95);
 }
 
+#result_page{
+  margin: left;
+}
+
 .parent {
   overflow-x:scroll;
   width:450px;
@@ -10,7 +14,7 @@ body {
 }
 
 #start_button {
-    margin: auto;
+    margin: auto ;
     display: block;
     width: 130px;
     height: 42px;
