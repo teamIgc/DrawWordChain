@@ -15,6 +15,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import project.drawwordchain.model.WebSocketUser;
+import project.drawwordchain.model.DataManager;
 
 @ServerEndpoint("/project/drawwordchain/startbroadcast")
 public class StartWebSocket {
@@ -48,6 +49,10 @@ public class StartWebSocket {
 
     @OnMessage
     public void echoUserName(String userName, Session session) {
+        //Listの初期化
+        DataManager data = new DataManager ();
+        data.ClearList();
+
         System.out.println("メッセージの確認");
         WebSocketUser wUser = new WebSocketUser();
         wUser.setName(userName);

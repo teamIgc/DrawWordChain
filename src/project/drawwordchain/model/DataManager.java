@@ -11,6 +11,7 @@ public class DataManager {
 	//Statementを保持するリスト
 	static List<Statement> statementList = new ArrayList<Statement>();
 
+
 	//Statement(名前、イラスト名、画像)オブジェクトを生成後フィールドで保持
 	public void setStatement(String user,String word,String imgData){
 		Statement statement = new Statement(user,word,imgData);
@@ -21,6 +22,11 @@ public class DataManager {
     public static List<Statement>  getStatementList(){
         return statementList;
     }
+
+		public void ClearList(){
+			System.out.println("なんでええ"+statementList.size());
+			 statementList.clear();
+		}
 
 // //テスト用
 //     public static void main(String args[]){
