@@ -14,9 +14,12 @@
 
     <form action="join" method="post">
         <dl class="name_area">
-            <dt><input id="name" type="text" name="name" placeholder="Write your name" required></dt>
+            <dt><input id="name" type="text" name="name" maxlength='8'
+              pattern="^[0-9A-Za-z\uFF66-\uFF9D\u30A1-\u30F6\u3041-\u3096\uFF10-\uFF19\u4E00-\u9FA0]+$"
+               placeholder="Write your name" required></dt>
             <dd><input id="start_button" type="submit" value="参加"></dd>
         </dl>
     </form>
+
 </body>
 </html>
