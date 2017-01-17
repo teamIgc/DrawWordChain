@@ -100,4 +100,4 @@ function CreateText(name,word){
   document.getElementById("gamediv").appendChild(t);
 }
 
-receiveResponse();//テスト用なのであとでコメントアウトしてね
+// receiveResponse();//テスト用なのであとでコメントアウトしてね
