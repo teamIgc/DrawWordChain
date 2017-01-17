@@ -164,6 +164,7 @@ function sendToUpdateWebSocket() {
         //現在のプレイヤー名を表示
         document.getElementById('now_draw_user').innerHTML=playerName;
 
+
         // 以下やること
         // 開始ボタンを無効にする
         // playerFlagをtrueにする．
