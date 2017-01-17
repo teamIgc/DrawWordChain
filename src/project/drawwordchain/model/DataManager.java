@@ -24,8 +24,8 @@ public class DataManager {
     }
 
 		public void ClearList(){
-			System.out.println("なんでええ"+statementList.size());
-			 statementList.clear();
+			System.out.println("リストの初期化");
+			statementList.clear();
 		}
 
 // //テスト用
