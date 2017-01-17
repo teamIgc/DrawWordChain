@@ -38,6 +38,7 @@ public class UpdateWebSocket {
 
     @OnClose
     public void onClose(Session session) {
+        sessions.remove(session);
         System.out.println("close : " + session.getId());
     }
 

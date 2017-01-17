@@ -6,13 +6,11 @@ var userList;
 var playerFlag; // 書き手かどうかの判別
 var startButtonJson;
 var LOCATION = "localhost:8080/isp2";
-// "ecl.info.kindai.ac.jp/16/isp2/warup/servlet/B17";
+// School: "ecl.info.kindai.ac.jp/16/isp2/warup/servlet/B17";
 // "localhost:8080/isp2";
-// School:
 
-// ページ読み込み時
-window.addEventListener("load", function() {
-
+// 読み込み時に呼び出される
+function init() {
     // サーブレットからユーザ名を取得
     sendToStartServlet();
 
@@ -23,35 +21,35 @@ window.addEventListener("load", function() {
 
     // 送信ボタンのEventListener
     document.getElementById("send_button").addEventListener("click", function() {
-        // 絵のタイトル未入力の際の動作
-        var drawWord = document.getElementById("word");
-        if (!drawWord.value) {
-            alert("絵の名前を入力してください");
-            return;
-        }
+        // textBoxについての設定
+            // 絵のタイトル未入力の際の動作
+            var drawWord = document.getElementById("word");
+            if (!drawWord.value) {
+                alert("絵の名前を入力してください");
+                return;
+            }
 
-        // textformに日本語のみが入力されているかの判定
-        if (!(drawWord.value.match(/^[\u3040-\u309F]+$/)) && !drawWord.value.match(/ー/)) {
-            alert("平仮名のみで入力してください");
-            return;
-        }
-        var lastWord = drawWord.value.slice(-1);
-        if (lastWord.match(/ん/)) {
-            alert("勝手にしりとりを終わらせないでください");
-            return;
-        }
+            // textformに日本語のみが入力されているかの判定
+            if (!(drawWord.value.match(/^[\u3040-\u309F]+$/)) && !drawWord.value.match(/ー/)) {
+                alert("平仮名のみで入力してください");
+                return;
+            }
+            var lastWord = drawWord.value.slice(-1);
+            if (lastWord.match(/ん/)) {
+                alert("勝手にしりとりを終わらせないでください");
+                return;
+            }
+
 
         // 画像->base64データに変換
         var data = canvas.toDataURL("image/jpeg");
         // alert(data);
 
-
         // 画像送信用
         // json = {"playerName":"myName","userList":[],"imgName":"絵の名前","img":"絵のデータ"}
         var json = "{\"playerName\": \"" + myName + "\",\"userList\":[],\"imgName\": \"drawWord.value\",\"img\": \"" + data + "\"}";
-        updatews.send(json);
 
-        // imgデータの受取
+        // updatews.onmessageの更新/imgデータの受取
         updatews.onmessage = function(receive) {
             var response = JSON.parse(receive.data);
             var imgData = response.img;
@@ -72,20 +70,23 @@ window.addEventListener("load", function() {
             document.getElementById('pict_display').appendChild(arrow);
         };
 
-        //がめんクリア
+        // 画像データ送信用のupdatewsを受け取ってから送信する
+        updatews.send(json);
+
+        // 画面クリア
         ctx.beginPath();
         ctx.fillStyle = "#f5f5f5";
         ctx.globalAlpha = 1.0;
         ctx.fillRect(0, 0, 500, 500);
 
-        // 画像送信の記述なし
     }, false);
 
-}, false);
+}
 
+/* xmlHttpRequestをStartに送る/受取はcheckStartRequest */
 function sendToStartServlet() {
     // ここで開始ボタンを無効化
-    // <実装>
+    // <未実装>
     var url = "start";
     xmlHttpRequest = new XMLHttpRequest();
     xmlHttpRequest.onreadystatechange = checkStartRequest;
@@ -93,6 +94,7 @@ function sendToStartServlet() {
     xmlHttpRequest.send(null);
 }
 
+/* xmlHttpRequestの受取/受け取った自分の名前をsendToStartWebSocketに送信 */
 function checkStartRequest() {
     // 開始ボタンのレスポンス処理部分
     if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
@@ -104,6 +106,7 @@ function checkStartRequest() {
     }
 }
 
+/* startwsで自分の名前を送信/参加者を受取/参加者リストに表示/参加を確認できたらsendToUpdateWebSocketへの接続を行う */
 function sendToStartWebSocket(userName) {
     startws = new WebSocket('ws://' + LOCATION + '/project/drawwordchain/startbroadcast');
 
@@ -133,9 +136,11 @@ function sendToStartWebSocket(userName) {
     };
 }
 
+/* updatewsで自分の名前と参加者リストを送信/ */
 function sendToUpdateWebSocket() {
     updatews = new WebSocket('ws://' + LOCATION + '/project/drawwordchain/updatebroadcast');
 
+    /* 接続時にユーザリストと自分の名前をパック */
     updatews.onopen = function() {
         // userListJson = a", "b", "c"
         var userListJson = "";
@@ -151,9 +156,10 @@ function sendToUpdateWebSocket() {
         startButtonJson = "{\"playerName\": \"" + myName + "\",\"userList\":[" + userListJson + "],\"imgName\": \"\",\"img\": \"\"}";
 
         // ここで開始ボタンを有効化
-        // <実装>
+        // <未実装>
     };
 
+    /*  */
     updatews.onmessage = function(receive) {
         console.log("updatewsのonmessage");
         // receive.data = {"playerName" : "Name", "firstChar" : "文字"}
@@ -179,11 +185,16 @@ function sendToUpdateWebSocket() {
         // 4行目:myName==playerNameを照合して一致したらプレイヤー名の色を替える処理に変更させる
         // 開始ボタンを無効にする
         // playerFlagをtrueにする．
-        document.getElementById('now_draw_user').innerHTML(playerName);
+
         // element.appendChild(document.createTextNode(playerName));
         // document.getElementById("pict_display").appendChild(element);
     };
 }
+
+// ページ読み込み時
+window.addEventListener("load", function() {
+    init(); // 初期化用メソッド
+}, false);
 
 // // ページ終了時
 // window.addEventListener("beforeunload", function() {
