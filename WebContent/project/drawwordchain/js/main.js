@@ -5,7 +5,7 @@ var myName; // 自分のuser名
 var userList;
 var playerFlag; // 書き手かどうかの判別
 var startButtonJson;
-var LOCATION = "localhost:8080/isp2";
+var WSLOCATION = wsLocationResult;
 // School: "ecl.info.kindai.ac.jp/16/isp2/warup/servlet/B17";
 // "localhost:8080/isp2";
 
@@ -84,7 +84,7 @@ function checkStartRequest() {
 
 /* startwsで自分の名前を送信/参加者を受取/参加者リストに表示/参加を確認できたらsendToUpdateWebSocketへの接続を行う */
 function sendToStartWebSocket(userName) {
-    startws = new WebSocket('ws://' + LOCATION + '/project/drawwordchain/startbroadcast');
+    startws = new WebSocket(WSLOCATION+'startbroadcast');
 
     startws.onopen = function() {
         startws.send(userName);
@@ -117,7 +117,7 @@ function sendToStartWebSocket(userName) {
 function sendToUpdateWebSocket() {
 
     if(updatews === null) {
-        updatews = new WebSocket('ws://' + LOCATION + '/project/drawwordchain/updatebroadcast');
+        updatews = new WebSocket(WSLOCATION + 'updatebroadcast');
     }
 
     /* 接続時にユーザリストと自分の名前をパック */
