@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @ServerEndpoint("/project/drawwordchain/updatebroadcast")
 public class UpdateWebSocket extends WebSocket {
 
-    private static final List<WebSocketUser> userList = new ArrayList<WebSocketUser>();
+    private static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
 
     private static boolean userListFlag = true;
 

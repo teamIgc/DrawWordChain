@@ -22,13 +22,13 @@ public class StartWebSocket extends WebSocket {
 
     private static final Queue<Session> startWebSocketSessions = new ConcurrentLinkedQueue<>();
 
-    private static final List<WebSocketUser> userList = new ArrayList<WebSocketUser>();
+    private static final List<WebSocketUser> startWebSocketUserList = new ArrayList<WebSocketUser>();
 
     @OnOpen
     public void connect(Session session) throws IOException {
         System.out.println("open : " + session.getId());
         // ゲームが始まっているときの処理
-        if(sessions.size() > 0) {
+        if(userList.size() > 0) {
             System.out.println("きたよ");
             session.getAsyncRemote().sendText("既にゲームが始まっています");
             session.close();
@@ -41,9 +41,9 @@ public class StartWebSocket extends WebSocket {
     public void onClose(Session session) {
         System.out.println("close : " + session.getId());
         //セッションIDをとり　それでセッション判別して対応しているnameを削除する
-        for (int i = 0; i < userList.size(); i++) {
-            if( userList.get(i).getSessionId() == session.getId() ) {
-                userList.remove(i);
+        for (int i = 0; i < startWebSocketUserList.size(); i++) {
+            if( startWebSocketUserList.get(i).getSessionId() == session.getId() ) {
+                startWebSocketUserList.remove(i);
             }
         }
         startWebSocketSessions.remove(session);
@@ -60,15 +60,15 @@ public class StartWebSocket extends WebSocket {
         WebSocketUser wUser = new WebSocketUser();
         wUser.setName(userName);
         wUser.setSessionId(session.getId());
-        userList.add(wUser);
-        System.out.println("サイズ: "+userList.size());
+        startWebSocketUserList.add(wUser);
+        System.out.println("サイズ: "+startWebSocketUserList.size());
         userNameBroadcast();
     }
 
     public void userNameBroadcast() {
         System.out.println("全プレイヤーにプレイヤー名を返却");
         String userNameColumn = "";
-        Iterator<WebSocketUser> iterator = userList.iterator();
+        Iterator<WebSocketUser> iterator = startWebSocketUserList.iterator();
         while(iterator.hasNext()){
             userNameColumn += iterator.next().getName();
             if(iterator.hasNext()) {

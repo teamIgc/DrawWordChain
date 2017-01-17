@@ -2,13 +2,14 @@ package project.drawwordchain.controller;
 
 import java.io.IOException;
 
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.websocket.Session;
+import project.drawwordchain.model.WebSocketUser;
 
 public class WebSocket {
 
-    protected static final Queue<Session> sessions = new ConcurrentLinkedQueue<>();
+    protected static final List<WebSocketUser> userList = new ArrayList<WebSocketUser>();
+
 
 }
