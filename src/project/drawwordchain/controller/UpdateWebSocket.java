@@ -56,7 +56,7 @@ public class UpdateWebSocket {
             System.err.println(e.getMessage());
         }
 
-        // playerName,userListのとき(1回目の受信)
+        // playerName,userListのとき(1回目の受信/開始ボタンが押された時)
         if(info.imgName.length() == 0) {
 
             // 送られてきたuserListを自クラスのuserListに挿入
@@ -82,16 +82,50 @@ public class UpdateWebSocket {
             System.out.println("jsonデータ: "+sendJson);
             messageBroadcast(sendJson);
 
-        // playerName,img,imgNameのとき(2回目以降の受信)
+        // playerName,img,imgNameのとき(2回目以降の受信/送信ボタンが押された時)
         } else {
             // DataManagerに登録
             DataManager dataMgr = new DataManager();
             dataMgr.setStatement(info.playerName, info.imgName, info.img);
+
+            // 現在のプレイヤー名を削除
+            for (int i = 0; i < userList.size(); i++) {
+                if( (userList.get(i).getName() == info.playerName ) ) {
+                    userList.get(i).setName("");
+                    break;
+                }
+            }
+
+            // 次のプレイヤー名を取得
+            String playerName = "";
+            boolean redirectFlag = false;
+            int count = userList.size();
+            for (int i = 0; i < userList.size(); i++) {
+                if( !(userList.get(i).getName() == "") ) {
+                    user = userList.get(i).getName();
+                    break;
+                }
+                count--;
+                if (count == 0) {
+                    boolean redirectFlag = true;
+                }
+            }
+
+            // Jsonの作成
+            // {"img":"画像データ","playerName":"プレイヤー名","redirectFlag":"終了する"}
             StringBuilder builder = new StringBuilder();
             builder.append('{');
             builder.append('\"').append("img").append('\"');
             builder.append(':');
             builder.append('\"').append(info.img).append('\"');
+            builder.append(',');
+            builder.append('\"').append("playerName").append('\"');
+            builder.append(':');
+            builder.append('\"').append(playerName).append('\"');
+            builder.append(',');
+            builder.append('\"').append("redirectFlag").append('\"');
+            builder.append(':');
+            builder.append(redirectFlag);
             builder.append('}');
             String sendJson = builder.toString();
             messageBroadcast(sendJson);

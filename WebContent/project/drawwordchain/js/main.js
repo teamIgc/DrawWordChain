@@ -166,19 +166,12 @@ function sendToUpdateWebSocket() {
         //現在のプレイヤー名を表示
         document.getElementById('now_draw_user').innerHTML=playerName;
 
-
-        // 以下やること
-        // 開始ボタンを無効にする
-        // playerFlagをtrueにする．
-
-
         //startwsを切断
         console.log("startwsの切断");
         startws.close(1000);
 
         // send_buttonを押したときのみに更新してしまうため，他のプレイヤーが受信できない問題
         // updatews.onmessageの更新/imgデータの受取
-        // {"img":"画像データ","playerName":"プレイヤー名","redirectFlag":"終了する"}
         updatews.onmessage = function(receive) {
             console.log("更新後のupdatewsのonmessage");
             var response = JSON.parse(receive.data);
