@@ -46,8 +46,6 @@ public class UpdateWebSocket {
     @OnMessage
     public void onMessage(String json, Session session) {
 
-        // startwsのclose
-
         // jsonデータの取り出し
         Info info = new Info();
         try {
@@ -86,7 +84,6 @@ public class UpdateWebSocket {
 
         // playerName,img,imgNameのとき(2回目以降の受信)
         } else {
-            System.out.println(info.img);
             // DataManagerに登録
             DataManager dataMgr = new DataManager();
             dataMgr.setStatement(info.playerName, info.imgName, info.img);
@@ -97,6 +94,8 @@ public class UpdateWebSocket {
             builder.append('\"').append(info.img).append('\"');
             builder.append('}');
             String sendJson = builder.toString();
+
+            System.out.println("返すデータ\n"+sendJson);
             messageBroadcast(sendJson);
         }
 

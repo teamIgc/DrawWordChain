@@ -16,7 +16,6 @@ function init() {
 
     // 開始ボタンのEventListener
     document.getElementById("start_button").addEventListener("click", function() {
-        startws.close(1000);
         updatews.send(startButtonJson);
     }, false);
 
@@ -54,10 +53,7 @@ function init() {
         updatews.send(json);
 
         // 画面クリア
-        ctx.beginPath();
-        ctx.fillStyle = "#f5f5f5";
-        ctx.globalAlpha = 1.0;
-        ctx.fillRect(0, 0, 500, 500);
+        clearCanvas();
 
     }, false);
 
@@ -106,6 +102,7 @@ function sendToStartWebSocket(userName) {
 
         // プレイヤーの挿入
         userList.forEach(function(user) {
+            console.log("userList: "+user);
             var userElement = document.createElement("div");
             userElement.appendChild(document.createTextNode(user));
             userAreaElement.appendChild(userElement);
@@ -165,12 +162,16 @@ function sendToUpdateWebSocket() {
         document.getElementById('pict_display').appendChild(arrow);
 
         // 以下やること
-        // 4行目:myName==playerNameを照合して一致したらプレイヤー名の色を替える処理に変更させる
         // 開始ボタンを無効にする
         // playerFlagをtrueにする．
 
+        // 動作しないためチェックしてください
         // element.appendChild(document.createTextNode(playerName));
         // document.getElementById("pict_display").appendChild(element);
+
+        //startwsを切断
+        console.log("startwsの切断");
+        startws.close(1000);
 
         // send_buttonを押したときのみに更新してしまうため，他のプレイヤーが受信できない問題
         // updatews.onmessageの更新/imgデータの受取
@@ -197,7 +198,17 @@ function sendToUpdateWebSocket() {
             document.getElementById('pict_display').appendChild(arrow);
         };
 
+        // データを受け取ったときに現在の落書きを削除
+        clearCanvas();
+
     };
+}
+
+function clearCanvas() {
+    ctx.beginPath();
+    ctx.fillStyle = "#f5f5f5";
+    ctx.globalAlpha = 1.0;
+    ctx.fillRect(0, 0, 500, 500);
 }
 
 // ページ読み込み時
