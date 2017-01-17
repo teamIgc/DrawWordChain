@@ -79,7 +79,6 @@ public class UpdateWebSocket {
             builder.append('}');
 
             String sendJson = builder.toString();
-            System.out.println("jsonデータ: "+sendJson);
             messageBroadcast(sendJson);
 
         // playerName,img,imgNameのとき(2回目以降の受信/送信ボタンが押された時)
@@ -90,7 +89,7 @@ public class UpdateWebSocket {
 
             // 現在のプレイヤー名を削除
             for (int i = 0; i < userList.size(); i++) {
-                if( (userList.get(i).getName() == info.playerName ) ) {
+                if( (userList.get(i).getName().equals(info.playerName) ) ) {
                     userList.get(i).setName("");
                     break;
                 }
