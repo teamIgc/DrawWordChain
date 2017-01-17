@@ -4,3 +4,4 @@
 var tmp = "ws"+location.href.substr(4);
 var wsLocationResult = tmp.substr(0, tmp.length - 9);
 console.log(wsLocationResult);
+var resultLocacion = location.href.substr(0, tmp.length - 9)+"result.html";

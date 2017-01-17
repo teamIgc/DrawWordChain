@@ -178,6 +178,7 @@ function sendToUpdateWebSocket() {
 
         // send_buttonを押したときのみに更新してしまうため，他のプレイヤーが受信できない問題
         // updatews.onmessageの更新/imgデータの受取
+        // {"img":"画像データ","playerName":"プレイヤー名","redirectFlag":"終了する"}
         updatews.onmessage = function(receive) {
             console.log("更新後のupdatewsのonmessage");
             var response = JSON.parse(receive.data);
@@ -199,6 +200,16 @@ function sendToUpdateWebSocket() {
             var arrowText = document.createTextNode("→");
             arrow.appendChild(arrowText);
             document.getElementById('pict_display').appendChild(arrow);
+
+            //現在の描き手を更新
+            var playerName = response.playerName;
+            document.getElementById('now_draw_user').innerHTML=playerName;
+
+            //redirectFlagがtrueになったらページをresult.htmlに飛ばす
+            var redirectFlag = response.redirectFlag;
+            if(redirectFlag){
+              location.replace=(resultLocacion);
+            }
         };
 
         // データを受け取ったときに現在の落書きを削除
