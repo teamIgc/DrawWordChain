@@ -11,7 +11,7 @@
 <div id="date">2016年1月22日(日) 作成</div>
 
 ### イントロダクション
-作成者：松浦（MVC担当）
+作成者：松浦(MVC担当)
 #### 1 アプリケーションの目的
 　現在Web上で存在する絵しりとりでHTML5のCanvas，バックグラウンドの処理をJavaで行っているものは存在しない．そこでゲームを通したコミュニケーションツールとして作成する．想像力をアウトプットできるようになるためのトレーニングツールとしての利用も可能．<br>
 　本アプリケーションの目的は，以下のとおりである．
@@ -55,7 +55,7 @@
 
 <br>
 ### アプリケーションのユースケース図とユースケース記述
-作成者：松浦（MVC担当）
+作成者：松浦(MVC担当)
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/260670965829074945/usecase.png">
 
 <br>
@@ -123,26 +123,26 @@ result.html
 <style>#space4 {margin-top: 400px;}</style>
 ### 概念クラス図
 作成者:辻野(VM担当)
-<img src="https://gyazo.com/94478f6ca151352d4bd2da855a670ca1.png">
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/272816998453346305/conceptClassImage.png">
 
 <div id=space4></div>
 ### 詳細クラス図
 作成者:辻野(VM担当)
-<img src="https://cdn.discordapp.com/attachments/254681505236910080/258498653839294464/classfigure.png">
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/272826189478100993/syousaikurasuzu.png">
 
 <div id=space5></div>
 <style>#space5 {margin-top: 450px;}</style>
 ### シーケンス図
-作成者:後安(V担当),馬屋原(VC担当)
+作成者:後安(V担当),馬屋原(VC担当),松浦(MVC担当）
 
 絵しりとりに参加する
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/271457958515179520/join.png">
 
-絵しりとりに開始する
-<img src="https://cdn.discordapp.com/attachments/254681505236910080/260265126484115467/start.png">
+絵しりとりを開始する
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/272823501746864128/Sequence.png">
 
 絵を送信する
-<img src="https://cdn.discordapp.com/attachments/254681505236910080/260317091775643648/send.png">
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/272829964196511745/Sequence.png">
 
 トップページに戻る
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/271462322902532099/result.png">
