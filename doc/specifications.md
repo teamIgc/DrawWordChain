@@ -3,16 +3,15 @@
 # DrawWordChain 仕様書
 
 ## B17チーム
-<p class="name">CM 担当 14-1-037-0115 辻野 翔平</p>
-<p class="name">VC 担当 14-1-037-0120 松浦 知明</p>
-<p class="name">VM 担当 14-1-037-0126 馬屋原 隆弘</p>
-<p class="name">CV 担当 14-1-037-0133 後安 謙吾</p>
+<p class="name">MVC 担当 14-1-037-0120 松浦 知明</p>
+<p class="name">VM 担当 14-1-037-0115 辻野 翔平</p>
+<p class="name">VC 担当 14-1-037-0126 馬屋原 隆弘</p>
+<p class="name">V 担当 14-1-037-0133 後安 謙吾</p>
 
-<div id="date">2016年12月13日(火) 作成</div>
-
+<div id="date">2016年1月22日(日) 作成</div>
 
 ### イントロダクション
-作成者：松浦（VC担当）
+作成者：松浦（MVC担当）
 #### 1 アプリケーションの目的
 　現在Web上で存在する絵しりとりでHTML5のCanvas，バックグラウンドの処理をJavaで行っているものは存在しない．そこでゲームを通したコミュニケーションツールとして作成する．想像力をアウトプットできるようになるためのトレーニングツールとしての利用も可能．<br>
 　本アプリケーションの目的は，以下のとおりである．
@@ -58,7 +57,7 @@
 <div id="usecaseTopSpace"></div>
 
 ### アプリケーションのユースケース図とユースケース記述
-作成者：松浦（VC担当）
+作成者：松浦（MVC担当）
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/260670965829074945/usecase.png">
 
 <br>
@@ -69,7 +68,7 @@
 <!--<table><tr><td>ユースケース名</td><td>絵しりとりを開始する</td></tr><tr><td>アクター</td><td>ユーザ</td></tr></table>
 -->
 
-作成者:馬屋原(VM担当)
+作成者:馬屋原(VC担当)
 
 |ユースケース名|絵しりとりに参加する|
 |:-|:-|
@@ -105,7 +104,7 @@
 |説明|<ol><li>正誤チェック<br><ul><li>前者のイラスト名の最後の文字と後者のイラスト名の頭文字が一致しているかを判定する．</li></ul></ol>|
 
 ### ページ遷移図と試作ページ
-作成者:松浦(VC担当)
+作成者:松浦(MVC担当)
 <img src="https://i.gyazo.com/6c7bef2a7660ee1e5a5dc29f3324e527.png">
 
 index.html
@@ -118,15 +117,15 @@ result.html
 <img src="https://gyazo.com/fd2a8c474a089a8b09aa24868a1d4652.png">
 
 ### 概念クラス図
-作成者:辻野(CM担当)
+作成者:辻野(VM担当)
 <img src="https://gyazo.com/94478f6ca151352d4bd2da855a670ca1.png">
 
 ### 詳細クラス図
-作成者:辻野(SM担当)
+作成者:辻野(VM担当)
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/258498653839294464/classfigure.png">
 
 ### シーケンス図
-作成者:後安(CV担当),馬屋原(VM担当)
+作成者:後安(V担当),馬屋原(VC担当)
 
 絵しりとりに参加する
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/258505469885153280/1.png">
