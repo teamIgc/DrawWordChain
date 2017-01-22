@@ -101,6 +101,9 @@
 |事後条件|<ol><li>トップページが表示されている．</li></ol>|
 |説明|<ol><li>正誤チェック<br><ul><li>前者のイラスト名の最後の文字と後者のイラスト名の頭文字が一致しているかを判定する．</li></ul></ol>|
 
+<div id=space2></div>
+<style>#space2 {margin-top: 6em;}</style>
+<br>
 ### ページ遷移図と試作ページ
 作成者:後安(V担当)
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/272550495011471361/pageTransition.png">
@@ -111,17 +114,24 @@ index.html
 main.html
 <img src="https://gyazo.com/2e1d4481ccf3f082d4553ef0c57cd7c7.png">
 
+<div id=space3></div>
+<style>#space3 {margin-top: 300px;}</style>
 result.html
 <img src="https://gyazo.com/fd2a8c474a089a8b09aa24868a1d4652.png">
 
+<div id=space4></div>
+<style>#space4 {margin-top: 400px;}</style>
 ### 概念クラス図
 作成者:辻野(VM担当)
 <img src="https://gyazo.com/94478f6ca151352d4bd2da855a670ca1.png">
 
+<div id=space4></div>
 ### 詳細クラス図
 作成者:辻野(VM担当)
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/258498653839294464/classfigure.png">
 
+<div id=space5></div>
+<style>#space5 {margin-top: 450px;}</style>
 ### シーケンス図
 作成者:後安(V担当),馬屋原(VC担当)
 
