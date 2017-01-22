@@ -4,9 +4,9 @@
 
 ## B17チーム
 <p class="name">MVC 担当 14-1-037-0120 松浦 知明</p>
-<p class="name">VM 担当 14-1-037-0115 辻野 翔平</p>
-<p class="name">VC 担当 14-1-037-0126 馬屋原 隆弘</p>
-<p class="name">V 担当 14-1-037-0133 後安 謙吾</p>
+<p class="name"> VM 担当 14-1-037-0115 辻野 翔平</p>
+<p class="name"> VC 担当 14-1-037-0126 馬屋原 隆弘</p>
+<p class="name">  V 担当 14-1-037-0133 後安 謙吾</p>
 
 <div id="date">2016年1月22日(日) 作成</div>
 
@@ -104,8 +104,8 @@
 |説明|<ol><li>正誤チェック<br><ul><li>前者のイラスト名の最後の文字と後者のイラスト名の頭文字が一致しているかを判定する．</li></ul></ol>|
 
 ### ページ遷移図と試作ページ
-作成者:松浦(MVC担当)
-<img src="https://i.gyazo.com/6c7bef2a7660ee1e5a5dc29f3324e527.png">
+作成者:後安(V担当)
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/272550495011471361/pageTransition.png">
 
 index.html
 <img src="https://i.gyazo.com/d7fd22c69e448ebb831626b5e1737a7f.png">
@@ -128,7 +128,7 @@ result.html
 作成者:後安(V担当),馬屋原(VC担当)
 
 絵しりとりに参加する
-<img src="https://cdn.discordapp.com/attachments/254681505236910080/258505469885153280/1.png">
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/271457958515179520/join.png">
 
 絵しりとりに開始する
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/260265126484115467/start.png">
@@ -137,4 +137,4 @@ result.html
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/260317091775643648/send.png">
 
 トップページに戻る
-<img src="https://i.gyazo.com/e6527dcea112e8140474b7caa46a5889.png">
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/271462322902532099/result.png">
