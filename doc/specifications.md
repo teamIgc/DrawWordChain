@@ -1,4 +1,4 @@
-<style>h1,h2,.name,#date {text-align: center;}h1 {padding-top: 150px;}h2 {padding-top:150px; }h3 {}th {font-weight: normal !important;}#usecaseTopSpace {padding-top: 120px;}#date {padding-top: 50px;padding-bottom: 30px;}#whitePage {width: 100%;height: 100%;}</style>
+<style>h1,h2,.name,#date {text-align: center;}h1 {padding-top: 150px;}h2 {padding-top:150px; }h3 {}th {font-weight: normal !important;}#date {padding-top: 50px;padding-bottom: 30px;}#whitePage {width: 100%;height: 100%;}</style>
 
 # DrawWordChain 仕様書
 
@@ -45,7 +45,7 @@
 #### 4 アプリケーションの条件
 　本アプリケーションに課された条件は，以下のとおりである．
 
-- HTMLのcanvasを用いるため，以下のブラウザでの対応となる，<br>IE11/Edge14/Firefox49以上/Chrome49以上/Safari9.1以上/Opera41以上で行うこと<br>動作検証はChrome54で行うこと
+- HTMLのcanvasを用いるため，以下のブラウザでの対応となる，<br>IE11/Edge14/Firefox49以上/Chrome49以上/Opera41以上で行うこと<br>動作検証はChrome54で行うこと
 - プログラミング言語としてJavaScriptとJavaを使用すること
 - サーブレットコンテナとしてJettyを使用すること
 - 絵を描く番の人しか絵が描けないようになっていること
@@ -54,8 +54,6 @@
 - 参加者が楽しめるゲームになっているものになること
 
 <br>
-<div id="usecaseTopSpace"></div>
-
 ### アプリケーションのユースケース図とユースケース記述
 作成者：松浦（MVC担当）
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/260670965829074945/usecase.png">
