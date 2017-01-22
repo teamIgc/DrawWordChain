@@ -1,18 +1,17 @@
-<style>h1,h2,.name,#date {text-align: center;}h1 {padding-top: 150px;}h2 {padding-top:150px; }h3 {}th {font-weight: normal !important;}#usecaseTopSpace {padding-top: 120px;}#date {padding-top: 50px;padding-bottom: 30px;}#whitePage {width: 100%;height: 100%;}</style>
+<style>h1,h2,.name,#date {text-align: center;}h1 {padding-top: 150px;}h2 {padding-top:150px; }h3 {}th {font-weight: normal !important;}#date {padding-top: 50px;padding-bottom: 30px;}#whitePage {width: 100%;height: 100%;}</style>
 
 # DrawWordChain 仕様書
 
 ## B17チーム
-<p class="name">CM 担当 14-1-037-0115 辻野 翔平</p>
-<p class="name">VC 担当 14-1-037-0120 松浦 知明</p>
-<p class="name">VM 担当 14-1-037-0126 馬屋原 隆弘</p>
-<p class="name">CV 担当 14-1-037-0133 後安 謙吾</p>
+<p class="name">MVC 担当 14-1-037-0120 松浦 知明</p>
+<p class="name"> VM 担当 14-1-037-0115 辻野 翔平</p>
+<p class="name"> VC 担当 14-1-037-0126 馬屋原 隆弘</p>
+<p class="name">  V 担当 14-1-037-0133 後安 謙吾</p>
 
-<div id="date">2016年12月13日(火) 作成</div>
-
+<div id="date">2016年1月22日(日) 作成</div>
 
 ### イントロダクション
-作成者：松浦（VC担当）
+作成者：松浦(MVC担当)
 #### 1 アプリケーションの目的
 　現在Web上で存在する絵しりとりでHTML5のCanvas，バックグラウンドの処理をJavaで行っているものは存在しない．そこでゲームを通したコミュニケーションツールとして作成する．想像力をアウトプットできるようになるためのトレーニングツールとしての利用も可能．<br>
 　本アプリケーションの目的は，以下のとおりである．
@@ -46,7 +45,7 @@
 #### 4 アプリケーションの条件
 　本アプリケーションに課された条件は，以下のとおりである．
 
-- HTMLのcanvasを用いるため，以下のブラウザでの対応となる，<br>IE11/Edge14/Firefox49以上/Chrome49以上/Safari9.1以上/Opera41以上で行うこと<br>動作検証はChrome54で行うこと
+- HTMLのcanvasを用いるため，以下のブラウザでの対応となる，<br>IE11/Edge14/Firefox49以上/Chrome49以上/Opera41以上で行うこと<br>動作検証はChrome54で行うこと
 - プログラミング言語としてJavaScriptとJavaを使用すること
 - サーブレットコンテナとしてJettyを使用すること
 - 絵を描く番の人しか絵が描けないようになっていること
@@ -55,10 +54,8 @@
 - 参加者が楽しめるゲームになっているものになること
 
 <br>
-<div id="usecaseTopSpace"></div>
-
 ### アプリケーションのユースケース図とユースケース記述
-作成者：松浦（VC担当）
+作成者：松浦(MVC担当)
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/260670965829074945/usecase.png">
 
 <br>
@@ -69,7 +66,7 @@
 <!--<table><tr><td>ユースケース名</td><td>絵しりとりを開始する</td></tr><tr><td>アクター</td><td>ユーザ</td></tr></table>
 -->
 
-作成者:馬屋原(VM担当)
+作成者:馬屋原(VC担当)
 
 |ユースケース名|絵しりとりに参加する|
 |:-|:-|
@@ -104,9 +101,12 @@
 |事後条件|<ol><li>トップページが表示されている．</li></ol>|
 |説明|<ol><li>正誤チェック<br><ul><li>前者のイラスト名の最後の文字と後者のイラスト名の頭文字が一致しているかを判定する．</li></ul></ol>|
 
+<div id=space2></div>
+<style>#space2 {margin-top: 6em;}</style>
+<br>
 ### ページ遷移図と試作ページ
-作成者:松浦(VC担当)
-<img src="https://i.gyazo.com/6c7bef2a7660ee1e5a5dc29f3324e527.png">
+作成者:後安(V担当)
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/272550495011471361/pageTransition.png">
 
 index.html
 <img src="https://i.gyazo.com/d7fd22c69e448ebb831626b5e1737a7f.png">
@@ -114,28 +114,42 @@ index.html
 main.html
 <img src="https://gyazo.com/2e1d4481ccf3f082d4553ef0c57cd7c7.png">
 
+<div id=space3></div>
+<style>#space3 {margin-top: 300px;}</style>
 result.html
 <img src="https://gyazo.com/fd2a8c474a089a8b09aa24868a1d4652.png">
 
+<div id=space4></div>
+<style>#space4 {margin-top: 400px;}</style>
 ### 概念クラス図
-作成者:辻野(CM担当)
-<img src="https://gyazo.com/94478f6ca151352d4bd2da855a670ca1.png">
+作成者:辻野(VM担当)
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/272833439991070720/conceptClassImage.png">
 
+<div id=space5></div>
+<style>#space5 {margin-top: 550px;}</style>
 ### 詳細クラス図
-作成者:辻野(SM担当)
-<img src="https://cdn.discordapp.com/attachments/254681505236910080/258498653839294464/classfigure.png">
+作成者:辻野(VM担当)
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/272834083611213834/syousaikurasuzu.png">
 
+<div id=space6></div>
+<style>#space6 {margin-top: 550px;}</style>
 ### シーケンス図
-作成者:後安(CV担当),馬屋原(VM担当)
+作成者:後安(V担当),馬屋原(VC担当),松浦(MVC担当）
 
 絵しりとりに参加する
-<img src="https://cdn.discordapp.com/attachments/254681505236910080/258505469885153280/1.png">
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/271457958515179520/join.png">
 
-絵しりとりに開始する
-<img src="https://cdn.discordapp.com/attachments/254681505236910080/260265126484115467/start.png">
+<div id=space7></div>
+<style>#space7 {margin-top: 200px;}</style>
+絵しりとりを開始する
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/272823501746864128/Sequence.png">
 
+<div id=space8></div>
+<style>#space8 {margin-top: 500px;}</style>
 絵を送信する
-<img src="https://cdn.discordapp.com/attachments/254681505236910080/260317091775643648/send.png">
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/272829964196511745/Sequence.png">
 
+<div id=space9></div>
+<style>#space9 {margin-top: 400px;}</style>
 トップページに戻る
-<img src="https://i.gyazo.com/e6527dcea112e8140474b7caa46a5889.png">
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/271462322902532099/result.png">
