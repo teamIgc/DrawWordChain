@@ -123,26 +123,33 @@ result.html
 <style>#space4 {margin-top: 400px;}</style>
 ### 概念クラス図
 作成者:辻野(VM担当)
-<img src="https://cdn.discordapp.com/attachments/254681505236910080/272816998453346305/conceptClassImage.png">
-
-<div id=space4></div>
-### 詳細クラス図
-作成者:辻野(VM担当)
-<img src="https://cdn.discordapp.com/attachments/254681505236910080/272826189478100993/syousaikurasuzu.png">
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/272833439991070720/conceptClassImage.png">
 
 <div id=space5></div>
-<style>#space5 {margin-top: 450px;}</style>
+<style>#space5 {margin-top: 550px;}</style>
+### 詳細クラス図
+作成者:辻野(VM担当)
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/272834083611213834/syousaikurasuzu.png">
+
+<div id=space6></div>
+<style>#space6 {margin-top: 550px;}</style>
 ### シーケンス図
 作成者:後安(V担当),馬屋原(VC担当),松浦(MVC担当）
 
 絵しりとりに参加する
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/271457958515179520/join.png">
 
+<div id=space7></div>
+<style>#space7 {margin-top: 200px;}</style>
 絵しりとりを開始する
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/272823501746864128/Sequence.png">
 
+<div id=space8></div>
+<style>#space8 {margin-top: 500px;}</style>
 絵を送信する
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/272829964196511745/Sequence.png">
 
+<div id=space9></div>
+<style>#space9 {margin-top: 400px;}</style>
 トップページに戻る
 <img src="https://cdn.discordapp.com/attachments/254681505236910080/271462322902532099/result.png">
