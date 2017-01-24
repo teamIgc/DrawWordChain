@@ -123,7 +123,7 @@ result.html
 <style>#space4 {margin-top: 400px;}</style>
 ### 概念クラス図
 作成者:辻野(VM担当)
-<img src="https://cdn.discordapp.com/attachments/254681505236910080/272833439991070720/conceptClassImage.png">
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/273329114990116866/gainenkurasu.png">
 
 <div id=space5></div>
 <style>#space5 {margin-top: 550px;}</style>
