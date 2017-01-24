@@ -129,7 +129,7 @@ result.html
 <style>#space5 {margin-top: 550px;}</style>
 ### 詳細クラス図
 作成者:辻野(VM担当)
-<img src="https://cdn.discordapp.com/attachments/254681505236910080/273334387657932802/syousaikurasuzu.png">
+<img src="https://cdn.discordapp.com/attachments/254681505236910080/273374255591325706/syousaikurasuzu.png">
 
 <div id=space6></div>
 <style>#space6 {margin-top: 550px;}</style>
